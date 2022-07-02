@@ -1,0 +1,79 @@
+{% extends "proyectofinal/base.html"%}
+{% load static %}
+{% block container %}
+    <div class="container border-0 shadow-lg" style="background-color:white">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 py-3 border">
+                <form  method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Nombre del Manga</label>
+                        {{form.name}}
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-md-4">
+                            <label for="inputState" class="form-label">Tipo</label>
+                            {{form.type}}   
+                        </div>
+                        <div class="col-md-8">
+                            <label for="inputState" class="form-label">Estatus</label>
+                            {{form.status}}    
+                        </div>
+                    </div>
+                    <div class="mb-3 py-2">
+                        <label for="exampleFormControlInput1" class="form-label">Fecha de lanzamiento</label>
+                        {{form.published}}
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-md-6">
+                            <label for="exampleFormControlInput1" class="form-label">Volumenes</label>
+                            {{form.volumenes}}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="exampleFormControlInput1" class="form-label">Autor</label>
+                            {{form.author}}
+                        </div>
+                    </div>
+                    <div class="col-md-12 py-2">
+                        <label for="exampleFormControlInput1" class="form-label">Generos</label>
+                        {{form.genres}}
+                    </div>
+                    <div class="col-md-12 py-2">
+                        <label for="formFile" class="form-label">Imagen de Portada</label>
+                        {{form.image}}
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Guardar</button>
+                </form>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8 border">
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Autor</th>
+                            <th colspan="2" >Opcion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for manga in mangas %}
+                        <tr>
+                            <td>{{manga.id}}</td>
+                            <td>{{manga.name}}</td>
+                            <td>{{manga.author}}</td>
+                            <td><a href="{% url 'Edit Manga' manga.id %}" class="btn btn-info" >Editar</a></td>
+                            <td><a href="{% url 'Delete Manga' manga.id %}" class="btn btn-danger btnEliminacion" >Eliminar</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div><br><br><br><br><br><br><br><br><br><br><br><br>
+
+{% endblock %}
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
+</script>
