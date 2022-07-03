@@ -12,6 +12,8 @@ class MangaForm(forms.ModelForm):
                   'volumenes',
                   'published',
                   'status',
+                  'description',
+                  'background',
                   'genres',
                   'author',
                   'image',]
@@ -20,6 +22,8 @@ class MangaForm(forms.ModelForm):
             'type': forms.Select(attrs = {'class':"form-select",'placeholder':""}),
             'volumenes': forms.TextInput(attrs = {'class':"form-control",'placeholder':""}),
             'published': forms.DateInput(attrs = {'type':"date",'class':"form-control",'placeholder':""}),
+            'description': forms.Textarea(attrs = {'class':"form-control",'placeholder':""}),
+            'background': forms.Textarea(attrs = {'class':"form-control",'placeholder':""}),
             'status': forms.Select(attrs = {'class':"form-select",'placeholder':""}),
             'genres': forms.TextInput(attrs = {'class':"form-control",'placeholder':""}),
             'author': forms.TextInput(attrs = {'class':"form-control",'placeholder':""}),

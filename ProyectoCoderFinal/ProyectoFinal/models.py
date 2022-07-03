@@ -40,12 +40,14 @@ class Anime(models.Model):
         return f'Nombre: {self.name} -- Tipo: {self.type} -- Estudio Animador: {self.studio}'
     
 class Manga(models.Model):
-    name = models.CharField(max_length = 40)
+    name = models.CharField(max_length = 100)
     type = models.CharField(max_length = 5, choices = [('MAN','Manga')])
     volumenes = models.IntegerField()
     published = models.DateField()
+    description = models.TextField(default = 'Sin Descripcion')
+    background = models.TextField(default = 'Sin Antecedentes')
     status = models.CharField(max_length = 10, choices = [('FIN','Finished'), ('PUB','Publishing')])
-    genres = models.CharField(max_length = 70)
+    genres = models.CharField(max_length = 100)
     author = models.CharField(max_length = 40)
     image = models.ImageField(default = 'default.png')
     
