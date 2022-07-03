@@ -123,3 +123,4 @@ def editManga(request, id_manga):
     context = {'form': form, 'manga': manga}
     
     return render(request, 'proyectofinal/editManga.html', context)
+    #Tus papas nunca te quisieron#
