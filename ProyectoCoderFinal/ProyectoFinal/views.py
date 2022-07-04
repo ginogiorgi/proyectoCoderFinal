@@ -123,4 +123,49 @@ def editManga(request, id_manga):
     context = {'form': form, 'manga': manga}
     
     return render(request, 'proyectofinal/editManga.html', context)
-    #Tus papas nunca te quisieron#
+
+def studioData(request):
+    
+    studios = Studios.objects.all()
+    
+    if request.method == 'POST':
+        form = StudiosForm(request.POST, request.FILES)
+        
+        if form.is_valid():
+            form.save()
+            
+            return redirect('Studio Data')
+    
+    else:
+        form = StudiosForm()
+        
+    context = {'form': form, 'studios': studios}
+    
+    return render(request, 'proyectofinal/studioData.html', context)
+
+def deleteStudio(request, id_studio):
+    
+    studio = Studios.objects.filter(id = id_studio)
+    studio.delete()
+    messages.success(request, 'Studio Eliminado')
+    
+    return redirect('Studio Data')
+
+def editStudio(request, id_studio):
+    
+    studio = Studios.objects.get(id = id_studio)
+     
+    if request.method == 'POST':
+        form = StudiosForm(request.POST,request.FILES, instance = studio)
+        
+        if form.is_valid():
+            form.save()
+            
+            return redirect('Studio Data')
+        
+    else:
+        form = StudiosForm(instance = studio)
+    
+    context = {'form': form, 'studio': studio}
+    
+    return render(request, 'proyectofinal/editStudio.html', context)

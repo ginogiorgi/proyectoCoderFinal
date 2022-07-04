@@ -58,3 +58,20 @@ class AnimeForm(forms.ModelForm):
             'backgroun':forms.Textarea(attrs = {'class':"form-control", 'placeholder':""}),
             'image':forms.FileInput(attrs = {'class':"form-control", 'placeholder':""}),
         }
+
+
+class StudiosForm(forms.ModelForm):
+
+    class Meta:
+        model = Studios
+        fields = ['name',
+                  'fundation_date',
+                  'description',
+                  'image',
+                  ]
+        widgets = {
+            'name':forms.TextInput(attrs = {'class':"form-control",'placeholder':""}),
+            'fundation_date' :forms.DateInput(attrs = {'type':"date", 'class':"form-control", 'placeholder':""}),
+            'description':forms.Textarea(attrs = {'class':"form-control", 'placeholder':""}),
+            'image':forms.FileInput(attrs = {'class':"form-control", 'placeholder':""}),
+        }

@@ -11,7 +11,9 @@ urlpatterns = [
     path('mangaData/', mangaData, name = 'Manga Data'),
     path('mangaDelete/<int:id_manga>/', deleteManga, name = 'Delete Manga'),
     path('editManga/<int:id_manga>', editManga, name = 'Edit Manga'),
-    
+    path('studioData/', studioData, name = 'Studio Data'),
+    path('studioDelete/<int:id_studio>/', deleteStudio, name = 'Delete Studio'),
+    path('editStudio/<int:id_studio>', editStudio, name = 'Edit Studio'),
 
 ]
 
