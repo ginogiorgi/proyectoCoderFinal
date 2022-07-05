@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .models import *
 from .forms import *
@@ -124,6 +125,8 @@ def editManga(request, id_manga):
     
     return render(request, 'proyectofinal/editManga.html', context)
 
+#CRUD Studio
+
 def studioData(request):
     
     studios = Studios.objects.all()
@@ -169,3 +172,53 @@ def editStudio(request, id_studio):
     context = {'form': form, 'studio': studio}
     
     return render(request, 'proyectofinal/editStudio.html', context)
+
+#REGISTER, LOGIN AND LOGOUT
+
+def registerUser(request):
+    
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        
+        if form.is_valid():
+            user = form.save()
+            profile = Profile()
+            profile.user = user
+            profile.save()
+            request.user = user
+            
+            return redirect('Home')
+    
+    else:
+        form = UserRegisterForm()
+    
+    context = {'form': form}
+    
+    return render(request, 'proyectofinal/registerUser.html', context)
+
+def loginRequest(request):
+    
+    if request.method == 'POST':
+        form = LoginForm(request, request.POST)
+        
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            
+            user = authenticate (username = username, password = password)
+            
+            if user is not None:
+                login(request, user)
+                 
+                return redirect('Home')
+        else:
+            form = LoginForm()
+            return render (request, 'proyectofinal/loginUser.html', {'form': form, 'message': 'Username or Password incorrect'})
+        
+    else:
+        form = LoginForm()
+        return render (request, 'proyectofinal/loginUser.html', {'form': form})
+
+
+def profile(request):
+    return render(request, 'proyectofinal/profileDetails.html')

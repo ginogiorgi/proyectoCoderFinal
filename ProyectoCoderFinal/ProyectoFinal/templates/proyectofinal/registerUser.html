@@ -1,0 +1,43 @@
+{% extends "proyectofinal/base.html" %}
+{% load static %}
+{% block container%}
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <div class="container border rounded shadow-lg" style="background-color:white">
+            <div class="row">
+                <p class="text-center fs-2">REGISTRAR USUARIO</b> </p>
+            </div>
+            <div class="row justify-content-evenly">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-3 ">
+                    <div class="text-center">
+                        <form method="POST">{% csrf_token %}
+                            <div class="row py-3">
+                                <div class="col-md-6">           
+                                    {{form.first_name}}
+                                </div>
+                                <div class="col-md-6">
+                                    {{form.last_name}}
+                                </div>
+                            </div>
+                            <div class="mb-3 py-3">
+                                {{form.username}}
+                            </div>
+                            <div class="mb-3 py-3">
+                                {{form.email}}
+                            </div>
+                            <div class="mb-3 py-3">
+                                {{form.password1}}
+                            </div>
+                            <div class="mb-3 py-3">
+                                {{form.password2}}
+                            </div>
+                            {% if form.errors %}
+                                <p>Passwords do not match.</p>
+                            {% endif %}
+                            <button type="submit" class="btn btn-secondary">Registrar Usuario</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

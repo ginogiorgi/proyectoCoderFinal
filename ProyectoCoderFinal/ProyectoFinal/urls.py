@@ -2,6 +2,7 @@ from django.urls import path, include
 from .views import *
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
     path('',homeView, name = 'Home'),
@@ -14,6 +15,10 @@ urlpatterns = [
     path('studioData/', studioData, name = 'Studio Data'),
     path('studioDelete/<int:id_studio>/', deleteStudio, name = 'Delete Studio'),
     path('editStudio/<int:id_studio>', editStudio, name = 'Edit Studio'),
+    path('registerUser/', registerUser, name = 'Register'),
+    path('loginUser/', loginRequest, name = 'Login'),
+    path('logout/', LogoutView.as_view(), name = 'Logout'),
+    path('profileDetails/',profile, name = 'Profile')
 
 ]
 

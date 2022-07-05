@@ -1,3 +1,4 @@
+from django.contrib.auth.forms import AuthenticationForm
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -75,3 +76,28 @@ class StudiosForm(forms.ModelForm):
             'description':forms.Textarea(attrs = {'class':"form-control", 'placeholder':""}),
             'image':forms.FileInput(attrs = {'class':"form-control", 'placeholder':""}),
         }
+        
+
+class UserRegisterForm(UserCreationForm):
+    email = forms.EmailField(required = True, widget = forms.TextInput(attrs = {'class':"form-control",'placeholder':"Email"}))
+    password1 = forms.CharField(label='Contraseña', widget = forms.PasswordInput(attrs = {'class':"form-control",'placeholder':"Contraseña"}))
+    password2 = forms.CharField(label= 'Confirmar contraseña', widget = forms.PasswordInput(attrs = {'class':"form-control",'placeholder':"Confirmar Contraseña"}))
+    
+    class Meta:
+        model = User
+        fields =  fields = ['first_name',
+                            'last_name',
+                            'username',
+                            'email',
+                            'password1',
+                            'password2',
+                            ]
+        
+        widgets = {'first_name': forms.TextInput(attrs = {'class':"form-control",'placeholder':"Nombre"}),
+                   'last_name': forms.TextInput(attrs = {'class':"form-control",'placeholder':"Apellido"}),
+                   'username': forms.TextInput(attrs = {'class':"form-control",'placeholder':"Nombre de Usuario"}),
+        }
+        
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(widget = forms.TextInput(attrs = {'class':"form-control",'placeholder':"Nombre de Usuario"}))
+    password = forms.CharField(widget = forms.PasswordInput(attrs ={'class':"form-control",'placeholder':"Contraseña"}))

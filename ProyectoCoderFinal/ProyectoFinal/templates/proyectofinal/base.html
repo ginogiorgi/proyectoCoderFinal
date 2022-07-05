@@ -82,18 +82,33 @@
                         <li><a href="{% url 'Studio Data' %}">CRUD Studio</a></li>
                     </ul>
                 </li>
+                {% if request.user.is_authenticated %}
                 <li>
                     <div class="profile-details">
                         <div class="profile-content">
-                            <!--<img src="image/profile.jpg" alt="profileImg">-->
+                            <img src="{{ request.user.profile.image.url }}" alt="profileImg">
                         </div>
                         <div class="name-job">
-                            <a href="" class="profile_name">Login</a>
+                            <a href="{% url 'Login' %}" class="profile_name">{{request.user}}</a>
                             <div class="job"> </div>
                         </div>
-                            <i class='bx bx-log-out' > </i>
+                            <a href="{% url 'Logout' %}"><i  class='bx bx-log-out' > </i> </a>
                     </div>
                 </li>
+                {% else %}
+                <li>
+                  <div class="profile-details">
+                      <div class="profile-content">
+                        
+                      </div>
+                      <div class="name-job">
+                          <a href="{% url 'Login' %}" class="profile_name">Login</a>
+                          <div class="job"> </div>
+                      </div>
+                          <i href="" class='' > </i>
+                  </div>
+                </li>
+                {% endif %}
             </ul>
         </nav>
         <div class="home-section" style="background-color:rgb(226, 206, 206)">
@@ -143,7 +158,7 @@
                                 <a href=""><img src="{{ anime.image.url }}" class="card-img-top" alt="..."></a>
                                 <div class="card-body">
                                   <h5 class="card-title">{{ anime.name }}</h5>
-                                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.}</p>
+                                  <p class="card-text">{{ anime.description }}</p>
                                   <a href="#" class="btn btn-primary">Go somewhere</a>
                                 </div>
                               </div>
@@ -159,8 +174,8 @@
                               <div class="card h-100">
                                 <a href=""><img src="{{ manga.image.url }}" class="card-img-top" alt=""></a>
                                 <div class="card-body">
-                                  <h5 class="card-title">{{manga.name}}</h5>
-                                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                  <h5 class="card-title">{{ manga.name }}</h5>
+                                  <p class="card-text">{{ manga.description }}</p>
                                   <a href="#" class="btn btn-primary">Detalles</a>
                                 </div>
                               </div>
