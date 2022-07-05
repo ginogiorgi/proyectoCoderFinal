@@ -1,0 +1,24 @@
+{% extends "proyectofinal/base.html"%}
+{% load static %}
+{% block container %}
+    <div class="container border-0 shadow-lg" style="background-color:white">
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-5 ">
+                        {% for user in users %}
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ user.profile.image.url }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title text-center">{{ user }}</h5>
+                              <p class="card-text text-center">{{ user.first_name }} {{ user.last_name }}</p>
+                              <a href="{% url 'Profile' user %}" class="btn btn-secondary">Perfil</a>
+                            </div>
+                          </div>
+                          
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+    </div>
+
+{% endblock%}

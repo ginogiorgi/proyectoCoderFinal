@@ -135,11 +135,17 @@ class NoticesForm(forms.ModelForm):
                   'description',
                   'content',
                   'image',
-                  'user']
+                  ]
         widgets = {'title': forms.TextInput(attrs = {'class':"form-control",'placeholder':"Nombre"}),
                    'description':forms.Textarea(attrs = {'class':"form-control", 'placeholder':""}),
                    'content':forms.Textarea(attrs = {'class':"form-control", 'placeholder':""}),
                    'image':forms.FileInput(attrs = {'class':"form-control", 'placeholder':""}),
-                   'user':forms.Select(attrs = {'class':"form-select", 'placeholder':""}),
                 }
         
+
+class MessageForm(forms.ModelForm):
+    
+    class Meta:
+        model = Messages
+        fields = ['content']
+        widgets = {'content': forms.Textarea(attrs = {'class':"form-control", 'placeholder':""})}

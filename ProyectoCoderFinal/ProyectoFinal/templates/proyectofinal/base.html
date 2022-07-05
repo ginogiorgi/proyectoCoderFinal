@@ -20,12 +20,19 @@
             </div>
             <ul class="nav-links">
                 <li>
-                    <a href="{% url 'Home' %}">
-                    <i class='bx bx-grid-alt' ></i>
-                    <span class="link_name">Home</span>
-                    </a>
+                    <div class="iocn-link">
+                      <a href="{% url 'Home' %}">
+                        <i class='bx bx-grid-alt'></i>
+                        <span class="link_name">Home</span>
+                      </a>
+                      <i class='bx bxs-chevron-down arrow' ></i>
+                    </div>
                     <ul class="sub-menu blank">
+                    <li><a class="link_name" href="{% url 'Home' %}">Home</a></li>
+                    <ul class="sub-menu">
                         <li><a class="link_name" href="{% url 'Home' %}">Home</a></li>
+                        <li><a href="{% url 'About Us' %}">About Us</a></li>
+                    </ul>
                     </ul>
                 </li>
                 <li>
@@ -45,25 +52,13 @@
                 </li>
                 <li>
                     <div class="iocn-link">
-                    <a href="#">
+                    <a href="{% url 'Notices' %}">
                         <i class='bx bx-book-alt' ></i>
-                        <span class="link_name">Posts</span>
+                        <span class="link_name">Novedades</span>
                     </a>
-                    <i class='bx bxs-chevron-down arrow' ></i>
-                    </div>
+
                     <ul class="sub-menu">
-                        <li><a class="link_name" href="#">Posts</a></li>
-                        <li><a href="{% url 'Notices' %}">Novedades</a></li>
-                        <li><a href="#">Foro</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                    <i class='bx bx-pie-chart-alt-2' ></i>
-                    <span class="link_name">Tops</span>
-                    </a>
-                    <ul class="sub-menu blank">
-                        <li><a class="link_name" href="#">Tops</a></li>
+                        <li><a class="link_name" href="{% url 'Notices' %}">Novedades</a></li>
                     </ul>
                 </li>
                 {% if request.user.is_authenticated %}
@@ -93,7 +88,7 @@
                             <img src="{{ request.user.profile.image.url }}" alt="profileImg">
                         </div>
                         <div class="name-job">
-                            <a href="{% url 'Profile' %}" class="profile_name">{{request.user}}</a>
+                            <a href="{% url 'Profile' request.user %}" class="profile_name">{{request.user}}</a>
                             <div class="job"> </div>
                         </div>
                             <a href="{% url 'Logout' %}"><i  class='bx bx-log-out' > </i> </a>
@@ -154,16 +149,15 @@
                             </button>
                         </div>
                         <div class="row">
-                          <p class="text-center fs-2"><br><br><br><b>Mangas Populares</b> </p>
+                          <p class="text-center fs-2"><br><br><br><b>Animes Populares</b></p>
                           <div class="row row-cols-1 row-cols-md-4 g-4">
                           {% for anime in animes %}
                             <div class="col">
                               <div class="card h-100">
-                                <a href=""><img src="{{ anime.image.url }}" class="card-img-top" alt="..."></a>
+                                <img src="{{ anime.image.url }}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                   <h5 class="card-title">{{ anime.name }}</h5>
                                   <p class="card-text">{{ anime.description }}</p>
-                                  <a href="#" class="btn btn-primary">Go somewhere</a>
                                 </div>
                               </div>
                             </div>
@@ -171,16 +165,15 @@
                           </div>
                         </div> 
                         <div class="row">
-                          <p class="text-center fs-2"><b>Comics Populares</b></p>
+                          <p class="text-center fs-2"><b>Mangas Populares</b></p>
                           <div class="row row-cols-1 row-cols-md-4 g-4">
                           {% for manga in mangas %}
                             <div class="col">
                               <div class="card h-100">
-                                <a href=""><img src="{{ manga.image.url }}" class="card-img-top" alt=""></a>
+                                <img src="{{ manga.image.url }}" class="card-img-top" alt="">
                                 <div class="card-body">
                                   <h5 class="card-title">{{ manga.name }}</h5>
                                   <p class="card-text">{{ manga.description }}</p>
-                                  <a href="#" class="btn btn-primary">Detalles</a>
                                 </div>
                               </div>
                             </div>
@@ -190,85 +183,40 @@
                          
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3">
+                      <form class="d-flex py-3" method="GET" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="username">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                      </form>
                         <div>
                             <table class="table table-striped border border-dark">
                                 <thead>
-                                    <tr>
-                                      <th class="table-dark">#</th>
+                                    <tr></tr>
                                       <th class="table-dark">Top Anime Rated</th>
                                     </tr>
                                 </thead>  
                                 <tbody>
                                     <tr>
-                                      <th scope="row">1</th>
-                                      <td>Mark</td>
+                                      {% for manga in top5 %}
+                                      <td>{{manga.name}}</td>
                                     </tr>
-                                    <tr>
-                                      <th scope="row">2</th>
-                                      <td>Jacob</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">3</th>
-                                      <td>Larry the Bird</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">4</th>
-                                      <td>Pepe</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">5</th>
-                                      <td>Tito</td>
-                                    </tr>
+                                    {% endfor %}
                                   </tbody>
                             </table>
                             <table class="table table-striped border border-dark">
                                 <thead>
                                     <tr>
-                                      <th class="table-dark">#</th>
+                                      <th class="table-dark">Ep</th>
                                       <th class="table-dark">Most Longer Animes</th>
                                     </tr>
                                 </thead>  
                                 <tbody>
+                                  {% for anime in toplonger %}
                                     <tr>
-                                      <th scope="row">1</th>
-                                      <td>Mark</td>
+                                      <th scope="row">{{anime.episodes}}</th>
+                                      <td>{{anime.name}}</td>
                                     </tr>
-                                    <tr>
-                                      <th scope="row">2</th>
-                                      <td>Jacob</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">3</th>
-                                      <td>Larry the Bird</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">4</th>
-                                      <td>Pepe</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">5</th>
-                                      <td>Tito</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">6</th>
-                                        <td>Tito</td>
-                                      </tr>
-                                      <tr>
-                                        <th scope="row">7</th>
-                                        <td>Tito</td>
-                                      </tr>
-                                      <tr>
-                                        <th scope="row">8</th>
-                                        <td>Tito</td>
-                                      </tr>
-                                      <tr>
-                                        <th scope="row">9</th>
-                                        <td>Tito</td>
-                                      </tr>
-                                      <tr>
-                                        <th scope="row">10</th>
-                                        <td>Tito</td>
-                                      </tr>
+                                  {% endfor %}
+                                    
                                   </tbody>
                             </table>
                             <table class="table table-striped border border-dark">
@@ -279,46 +227,12 @@
                                     </tr>
                                 </thead>  
                                 <tbody>
+                                  {% for anime in toppopular %}
                                     <tr>
-                                      <th scope="row">1</th>
-                                      <td>Mark</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">2</th>
-                                      <td>Jacob</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">3</th>
-                                      <td>Larry the Bird</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">4</th>
-                                      <td>Pepe</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">5</th>
-                                      <td>Tito</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">6</th>
-                                        <td>Tito</td>
-                                      </tr>
-                                      <tr>
-                                        <th scope="row">7</th>
-                                        <td>Tito</td>
-                                      </tr>
-                                      <tr>
-                                        <th scope="row">8</th>
-                                        <td>Tito</td>
-                                      </tr>
-                                      <tr>
-                                        <th scope="row">9</th>
-                                        <td>Tito</td>
-                                      </tr>
-                                      <tr>
-                                        <th scope="row">10</th>
-                                        <td>Tito</td>
-                                      </tr>
+                                      <th scope="row">{{anime.id}}</th>
+                                      <td>{{anime.name}}</td>
+                                    </tr>   
+                                    {% endfor %}                                
                                   </tbody>
                             </table>
                         </div>

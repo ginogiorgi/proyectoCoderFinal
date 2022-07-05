@@ -68,6 +68,15 @@ class Notices(models.Model):
         
     def __str__(self):
         return self.content
+ 
     
+class Messages(models.Model):
+    content = models.CharField(max_length = 150)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='message')
 
-    
+    class Meta:
+        ordering = ['-timestamp']
+        
+    def __str__(self) -> str:
+        return self.content

@@ -14,6 +14,9 @@
             <h1 class="text-center">{{notice.title}}</h1>
             <br><p class="lg-center fs-4">{{notice.content}}</p>
             <p class="text-end fw-bold">Subido por: {{notice.user}} <img style="max-width:px;max-height:50px" src="{{notice.user.profile.image.url}}"></p>
+            {% if request.user.is_superuser %}
+                <a href=""><button type="button" class="btn btn-secondary end">Eliminar Noticia</button></a>
+            {% endif%}
         </div>
     </div>
 

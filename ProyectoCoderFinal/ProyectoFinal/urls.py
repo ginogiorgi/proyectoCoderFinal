@@ -18,7 +18,7 @@ urlpatterns = [
     path('registerUser/', registerUser, name = 'Register'),
     path('loginUser/', loginRequest, name = 'Login'),
     path('logout/', LogoutView.as_view(), name = 'Logout'),
-    path('profileDetails/',profile, name = 'Profile'),
+    path('profileDetails/<str:username>/',profile, name = 'Profile'),
     path('editProfile/', editProfile, name = 'Edit Profile'),
     path('animeList/', animeSearch, name = 'Anime Search'),
     path('mangaList/', mangaSearch, name = 'Manga Search'),
@@ -26,6 +26,7 @@ urlpatterns = [
     path('noticesHome/', noticePost, name = 'Notices'),
     path('noticeDetail/<int:id_notice>/', noticeDetail, name = 'Notice Details'),
     path('createNotice/', createNotice, name = 'New Notice'),
+    path('aboutus/', aboutus, name = 'About Us')
 ]
 
 if settings.DEBUG:

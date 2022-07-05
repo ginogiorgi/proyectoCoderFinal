@@ -12,6 +12,9 @@ def homeView(request):
     mangas_list = []
     anime_list = []
     notice_list = []
+    top5 = Anime.objects.order_by('-id')[:5]
+    toppopular = Anime.objects.order_by('-id')[:10]
+    toplonger = Anime.objects.order_by('-episodes')[:10]
     
     for i in mangas:
         if len(mangas_list) == 4:
@@ -27,8 +30,15 @@ def homeView(request):
         if len(notice_list) == 3:
             break
         notice_list.append(i)
+    
+    if request.GET:
+        user_search = request.GET['username']
+        users = User.objects.filter(username__icontains = user_search)
+        context = {'users':users}
         
-    context = {'notices':notice_list, 'mangas': mangas_list, 'animes': anime_list}
+        return render(request, 'proyectofinal/profileList.html', context)
+    
+    context = {'notices':notice_list, 'mangas': mangas_list, 'animes': anime_list, 'toplonger':toplonger,'toppopular':toppopular,'top5':top5}
         
     return render(request, 'proyectofinal/base.html', context)
 
@@ -222,8 +232,12 @@ def loginRequest(request):
 
 #PROFILE AND EDIT PROFILE
 
-def profile(request):
-    return render(request, 'proyectofinal/profileDetails.html')
+def profile(request, username):
+    user = User.objects.get(username = username)
+      
+    context = {'user': user }
+    
+    return render(request, 'proyectofinal/profileDetails.html', context)
 
 def editProfile(request):
     user = request.user
@@ -305,7 +319,9 @@ def createNotice(request):
         form = NoticesForm(request.POST, request.FILES)
         
         if form.is_valid():
-            form.save()
+            notice = form.save()
+            notice.user = request.user
+            notice.save()
             
             return redirect('Notices')
         
@@ -315,3 +331,6 @@ def createNotice(request):
     context = {'form':form}
     
     return render(request, 'proyectofinal/createNotice.html', context)
+
+def aboutus(request):
+    return render(request, 'proyectofinal/aboutus.html')
