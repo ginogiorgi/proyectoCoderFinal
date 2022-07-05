@@ -23,7 +23,9 @@ urlpatterns = [
     path('animeList/', animeSearch, name = 'Anime Search'),
     path('mangaList/', mangaSearch, name = 'Manga Search'),
     path('studioList/', studioSearch, name = 'Studios Search'),
-
+    path('noticesHome/', noticePost, name = 'Notices'),
+    path('noticeDetail/<int:id_notice>/', noticeDetail, name = 'Notice Details'),
+    path('createNotice/', createNotice, name = 'New Notice'),
 ]
 
 if settings.DEBUG:

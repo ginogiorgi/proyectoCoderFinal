@@ -1,0 +1,23 @@
+{% extends "proyectofinal/base.html"%}
+{% load static %}
+{% block container %}
+<div class="container border-0 shadow-lg" style="background-color:white">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-2 col-xl-1 py-3 "></div>
+        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-10 py-3 ">
+                <img src="{{ notice.image.url }}" class="img-fluid text-center" style="max-height: 1000;">
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-2 col-xl-1 py-3 "></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-3 ">
+            <h1 class="text-center">{{notice.title}}</h1>
+            <br><p class="lg-center fs-4">{{notice.content}}</p>
+            <p class="text-end fw-bold">Subido por: {{notice.user}} <img style="max-width:px;max-height:50px" src="{{notice.user.profile.image.url}}"></p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+

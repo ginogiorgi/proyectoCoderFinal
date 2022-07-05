@@ -126,3 +126,20 @@ class ProfileEditForm(forms.ModelForm):
         widgets = {'bio':forms.Textarea(attrs = {'class':"form-control", 'placeholder':""}),
                    'image':forms.FileInput(attrs = {'class':"form-control", 'placeholder':""}),
                 }
+        
+class NoticesForm(forms.ModelForm):
+    
+    class Meta:
+        model = Notices
+        fields = ['title',
+                  'description',
+                  'content',
+                  'image',
+                  'user']
+        widgets = {'title': forms.TextInput(attrs = {'class':"form-control",'placeholder':"Nombre"}),
+                   'description':forms.Textarea(attrs = {'class':"form-control", 'placeholder':""}),
+                   'content':forms.Textarea(attrs = {'class':"form-control", 'placeholder':""}),
+                   'image':forms.FileInput(attrs = {'class':"form-control", 'placeholder':""}),
+                   'user':forms.Select(attrs = {'class':"form-select", 'placeholder':""}),
+                }
+        

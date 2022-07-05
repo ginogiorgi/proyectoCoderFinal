@@ -285,3 +285,33 @@ def studioSearch(request):
     
     context = {'studios': studios}
     return render(request, 'proyectofinal/studiosList.html',context)
+
+def noticePost(request):
+    notices = Notices.objects.all()
+    
+    context = {'notices':notices}
+    
+    return render(request, 'proyectofinal/noticesHome.html', context)
+
+def noticeDetail(request, id_notice):
+    notice = Notices.objects.get(id = id_notice)
+    
+    context = {'notice': notice}
+    return render(request, 'proyectofinal/noticeDetail.html', context)
+
+def createNotice(request):
+    
+    if request.method == 'POST':
+        form = NoticesForm(request.POST, request.FILES)
+        
+        if form.is_valid():
+            form.save()
+            
+            return redirect('Notices')
+        
+    else:
+        form = NoticesForm()
+    
+    context = {'form':form}
+    
+    return render(request, 'proyectofinal/createNotice.html', context)

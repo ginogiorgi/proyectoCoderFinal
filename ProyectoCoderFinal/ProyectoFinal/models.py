@@ -58,6 +58,7 @@ class Manga(models.Model):
 class Notices(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length = 100)
+    description = models.CharField(max_length = 200, default='')
     content = models.TextField()
     image = models.ImageField(default = 'default.png')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post')

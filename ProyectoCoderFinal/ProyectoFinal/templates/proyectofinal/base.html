@@ -53,7 +53,7 @@
                     </div>
                     <ul class="sub-menu">
                         <li><a class="link_name" href="#">Posts</a></li>
-                        <li><a href="#">Novedades</a></li>
+                        <li><a href="{% url 'Notices' %}">Novedades</a></li>
                         <li><a href="#">Foro</a></li>
                     </ul>
                 </li>
@@ -81,6 +81,7 @@
                             <li><a href="{% url 'Anime Data' %}">CRUD Anime</a></li>
                             <li><a href="{% url 'Manga Data' %}">CRUD Manga</a></li>
                             <li><a href="{% url 'Studio Data' %}">CRUD Studio</a></li>
+                            <li><a href="{% url 'New Notice' %}">New Notice</a></li>
                         </ul>
                     </li>
                   {% endif %}

@@ -1,0 +1,23 @@
+{% extends "proyectofinal/base.html"%}
+{% load static %}
+{% block container %}
+<div class="container border-0 shadow-lg" style="background-color:white">
+    <div class="text-center">
+        <h1 class="py-3">Ultimas Novedades</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-3 ">
+            {% for notice in notices %}
+                <div class="card mb-5">
+                    <a href="{% url 'Notice Details' notice.id%}"><img src="{{notice.image.url}}" class="card-img-top" style="max-height:450px">
+                    <div class="card-body">
+                    <h5 class="card-title text-center">{{notice.title}}</h5></a>  
+                    <p class="card-text">{{notice.description}}</p>
+                    <p class="card-text"><small class="text-muted">{{notice.timestamp}}</small></p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
