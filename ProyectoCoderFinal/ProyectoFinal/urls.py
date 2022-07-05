@@ -18,7 +18,11 @@ urlpatterns = [
     path('registerUser/', registerUser, name = 'Register'),
     path('loginUser/', loginRequest, name = 'Login'),
     path('logout/', LogoutView.as_view(), name = 'Logout'),
-    path('profileDetails/',profile, name = 'Profile')
+    path('profileDetails/',profile, name = 'Profile'),
+    path('editProfile/', editProfile, name = 'Edit Profile'),
+    path('animeList/', animeSearch, name = 'Anime Search'),
+    path('mangaList/', mangaSearch, name = 'Manga Search'),
+    path('studioList/', studioSearch, name = 'Studios Search'),
 
 ]
 

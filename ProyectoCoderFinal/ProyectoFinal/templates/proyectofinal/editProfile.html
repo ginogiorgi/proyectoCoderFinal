@@ -1,0 +1,44 @@
+{% extends "proyectofinal/base.html" %}
+{% load static %}
+{% block container%}
+    <div class="container border-0 shadow-lg" style="background-color:white">
+        <div class="row justify-content-evenly">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4 py-4">
+                <div class="text-center">
+                    <img src="{{ request.user.profile.image.url }}" class="img-thumbnail" alt="">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 py-3 ">
+                <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="row py-3">
+                        <div class="col-md-6">           
+                            {{u_form.first_name}}
+                        </div>
+                        <div class="col-md-6">
+                            {{u_form.last_name}}
+                        </div>
+                    </div>
+                    <div class="mb-3 py-3">
+                        {{u_form.username}}
+                    </div>
+                    <div class="mb-3 py-3">
+                        {{u_form.password1}}
+                    </div>
+                    <div class="mb-3 py-3">
+                        {{u_form.password2}}
+                    </div>
+                    <div class="mb-3 py-3">
+                        {{p_form.bio}}
+                    </div>
+                    <div class="mb-3 py-3">
+                        {{p_form.image}}
+                    </div>
+                    {% if form.errors %}
+                        <p>Passwords do not match.</p>
+                    {% endif %}
+                    <button type="submit" class="btn btn-secondary">Registrar Cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

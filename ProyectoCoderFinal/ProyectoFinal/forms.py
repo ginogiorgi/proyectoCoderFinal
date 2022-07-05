@@ -101,3 +101,28 @@ class UserRegisterForm(UserCreationForm):
 class LoginForm(AuthenticationForm):
     username = forms.CharField(widget = forms.TextInput(attrs = {'class':"form-control",'placeholder':"Nombre de Usuario"}))
     password = forms.CharField(widget = forms.PasswordInput(attrs ={'class':"form-control",'placeholder':"Contraseña"}))
+    
+
+class UserEditForm(forms.ModelForm):
+    password1 = forms.CharField(label='Contraseña', widget = forms.PasswordInput(attrs = {'class':"form-control",'placeholder':"Contraseña"}), 
+                                required = False)
+    password2 = forms.CharField(label= 'Confirmar contraseña', widget = forms.PasswordInput(attrs = {'class':"form-control",'placeholder':"Confirmar Contraseña"}), 
+                                required = False)
+     
+    class Meta:
+        model = User
+        fields = ['first_name','last_name', 'username']
+        widgets = {'first_name': forms.TextInput(attrs = {'class':"form-control",'placeholder':"Nombre"}),
+                   'last_name': forms.TextInput(attrs = {'class':"form-control",'placeholder':"Apellido"}),
+                   'username': forms.TextInput(attrs = {'class':"form-control",'placeholder':"Nombre de Usuario"}),
+        }
+    
+    
+class ProfileEditForm(forms.ModelForm):
+    
+    class Meta:
+        model = Profile
+        fields = ['image', 'bio']
+        widgets = {'bio':forms.Textarea(attrs = {'class':"form-control", 'placeholder':""}),
+                   'image':forms.FileInput(attrs = {'class':"form-control", 'placeholder':""}),
+                }

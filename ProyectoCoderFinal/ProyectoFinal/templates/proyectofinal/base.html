@@ -38,10 +38,9 @@
                     </div>
                     <ul class="sub-menu">
                         <li><a class="link_name" href="#">Category</a></li>
-                        <li><a href="#">Peliculas</a></li>
-                        <li><a href="#">Series</a></li>
-                        <li><a href="#">Manga</a></li>
-                        <li><a href="#">Comic</a></li>
+                        <li><a href="{% url 'Anime Search' %}">Anime</a></li>
+                        <li><a href="{% url 'Manga Search' %}">Manga</a></li>
+                        <li><a href="{% url 'Studios Search' %}">Studios</a></li>
                     </ul>
                 </li>
                 <li>
@@ -67,21 +66,25 @@
                         <li><a class="link_name" href="#">Tops</a></li>
                     </ul>
                 </li>
-                <li>
-                    <div class="iocn-link">
-                    <a href="#">
-                        <i class='bx bx-plug' ></i>
-                        <span class="link_name">Admin Options</span>
-                    </a>
-                    <i class='bx bxs-chevron-down arrow' ></i>
-                    </div>
-                    <ul class="sub-menu">
-                        <li><a class="link_name" href="#">Admin Options</a></li>
-                        <li><a href="{% url 'Anime Data' %}">CRUD Anime</a></li>
-                        <li><a href="{% url 'Manga Data' %}">CRUD Manga</a></li>
-                        <li><a href="{% url 'Studio Data' %}">CRUD Studio</a></li>
-                    </ul>
-                </li>
+                {% if request.user.is_authenticated %}
+                  {% if request.user.is_superuser %}
+                    <li>
+                        <div class="iocn-link">
+                        <a href="#">
+                            <i class='bx bx-plug' ></i>
+                            <span class="link_name">Admin Options</span>
+                        </a>
+                        <i class='bx bxs-chevron-down arrow' ></i>
+                        </div>
+                        <ul class="sub-menu">
+                            <li><a class="link_name" href="#">Admin Options</a></li>
+                            <li><a href="{% url 'Anime Data' %}">CRUD Anime</a></li>
+                            <li><a href="{% url 'Manga Data' %}">CRUD Manga</a></li>
+                            <li><a href="{% url 'Studio Data' %}">CRUD Studio</a></li>
+                        </ul>
+                    </li>
+                  {% endif %}
+                {% endif %}
                 {% if request.user.is_authenticated %}
                 <li>
                     <div class="profile-details">
@@ -89,7 +92,7 @@
                             <img src="{{ request.user.profile.image.url }}" alt="profileImg">
                         </div>
                         <div class="name-job">
-                            <a href="{% url 'Login' %}" class="profile_name">{{request.user}}</a>
+                            <a href="{% url 'Profile' %}" class="profile_name">{{request.user}}</a>
                             <div class="job"> </div>
                         </div>
                             <a href="{% url 'Logout' %}"><i  class='bx bx-log-out' > </i> </a>

@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
@@ -219,6 +220,68 @@ def loginRequest(request):
         form = LoginForm()
         return render (request, 'proyectofinal/loginUser.html', {'form': form})
 
+#PROFILE AND EDIT PROFILE
 
 def profile(request):
     return render(request, 'proyectofinal/profileDetails.html')
+
+def editProfile(request):
+    user = request.user
+    
+    if request.method == 'POST':
+        u_form = UserEditForm(request.POST, instance = request.user)
+        p_form = ProfileEditForm(request.POST, request.FILES, instance = user.profile)
+        
+        if u_form.is_valid() and p_form.is_valid():
+            
+            u_form.cleaned_data
+            user.password1 = u_form['password1']
+            user.password2 = u_form['password2']
+            
+            u_form.save()
+            p_form.save()
+            
+            return redirect('Home')
+    
+    else:
+        u_form = UserEditForm(instance = request.user)
+        p_form = ProfileEditForm()
+        
+    context = {'u_form':u_form, 'p_form':p_form}
+    
+    return render(request, 'proyectofinal/editProfile.html', context)
+
+#LISTS AND GETS
+
+def animeSearch(request):
+    
+    if request.GET:
+        anime_search = request.GET['name']
+        animes = Anime.objects.filter(name__icontains = anime_search)
+    else:
+        animes = Anime.objects.all()
+    
+    context = {'animes': animes}
+    return render(request, 'proyectofinal/animeList.html',context)
+
+def mangaSearch(request):
+    
+    if request.GET:
+        manga_search = request.GET['name']
+        mangas = Manga.objects.filter(name__icontains = manga_search)
+    else:
+        mangas = Manga.objects.all()
+    
+    context = {'mangas': mangas}
+    return render(request, 'proyectofinal/mangaList.html',context)
+
+def studioSearch(request):
+    
+    if request.GET:
+        studio_search = request.GET['name']
+        studios = Studios.objects.filter(name__icontains = studio_search)
+    else:
+        studios = Studios.objects.all()
+    
+    context = {'studios': studios}
+    return render(request, 'proyectofinal/studiosList.html',context)
