@@ -4,3 +4,6 @@ En los videso se puede ver las caracteristicas que ofrece la pagina. nos quedamo
 
 Gino Giorgi: vistas para la pagina principal, logear, desloguear y registrarse y detalles de perfil y modificacion del mismo.
 Facundo jauregui: matrices CRUD para las tablas de las bases de datos y listados con busquedas de los animes, mangas y studios.
+ links de videos:
+ -primera parte:https://www.youtube.com/watch?v=4ON1O03SUaI
+ -segunda parte:https://www.youtube.com/watch?v=-Ya7Rc7v0lI
