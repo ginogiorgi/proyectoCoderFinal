@@ -129,7 +129,7 @@
                             <div class="carousel-inner rounded">
                             {% for notice in notices %}
                               <div class="carousel-item active">
-                                <a href="">
+                                <a href="{% url 'Notice Details' notice.id %}">
                                   <img src="{{ notice.image.url }}" class="d-block w-100" alt="...">
                                   <div class="carousel-caption d-none d-md-block">
                                     <h5>{{ notice.title }}</h5>
