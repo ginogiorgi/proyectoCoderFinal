@@ -36,11 +36,11 @@ def homeView(request):
         users = User.objects.filter(username__icontains = user_search)
         context = {'users':users}
         
-        return render(request, 'proyectofinal/profileList.html', context)
+        return render(request, 'profileList.html', context)
     
     context = {'notices':notice_list, 'mangas': mangas_list, 'animes': anime_list, 'toplonger':toplonger,'toppopular':toppopular,'top5':top5}
         
-    return render(request, 'proyectofinal/base.html', context)
+    return render(request, 'base.html', context)
 
 #CRUD Anime
 
@@ -60,7 +60,7 @@ def animeData(request):
 
     context = {'animes':animes,'form':form}
     
-    return render(request, 'proyectofinal/animeData.html', context)
+    return render(request, 'animeData.html', context)
 
 def deleteAnime(request, id_anime):
     
@@ -86,7 +86,7 @@ def editAnime(request, id_anime):
     
     context = {'form': form, 'anime': anime}
     
-    return render(request, 'proyectofinal/editAnime.html', context)
+    return render(request, 'editAnime.html', context)
     
 #CRUD Manga
 
@@ -108,7 +108,7 @@ def mangaData(request):
 
     context = {'mangas': mangas, 'form': form}
     
-    return render(request, 'proyectofinal/mangaData.html', context)
+    return render(request, 'mangaData.html', context)
 
 def deleteManga(request, id_manga):
     
@@ -134,7 +134,7 @@ def editManga(request, id_manga):
     
     context = {'form': form, 'manga': manga}
     
-    return render(request, 'proyectofinal/editManga.html', context)
+    return render(request, 'editManga.html', context)
 
 #CRUD Studio
 
@@ -155,7 +155,7 @@ def studioData(request):
         
     context = {'form': form, 'studios': studios}
     
-    return render(request, 'proyectofinal/studioData.html', context)
+    return render(request, 'studioData.html', context)
 
 def deleteStudio(request, id_studio):
     
@@ -182,7 +182,7 @@ def editStudio(request, id_studio):
     
     context = {'form': form, 'studio': studio}
     
-    return render(request, 'proyectofinal/editStudio.html', context)
+    return render(request, 'editStudio.html', context)
 
 #REGISTER, LOGIN AND LOGOUT
 
@@ -205,7 +205,7 @@ def registerUser(request):
     
     context = {'form': form}
     
-    return render(request, 'proyectofinal/registerUser.html', context)
+    return render(request, 'registerUser.html', context)
 
 def loginRequest(request):
     
@@ -224,11 +224,11 @@ def loginRequest(request):
                 return redirect('Home')
         else:
             form = LoginForm()
-            return render (request, 'proyectofinal/loginUser.html', {'form': form, 'message': 'Username or Password incorrect'})
+            return render (request, 'loginUser.html', {'form': form, 'message': 'Username or Password incorrect'})
         
     else:
         form = LoginForm()
-        return render (request, 'proyectofinal/loginUser.html', {'form': form})
+        return render (request, 'loginUser.html', {'form': form})
 
 #PROFILE AND EDIT PROFILE
 
@@ -237,7 +237,7 @@ def profile(request, username):
       
     context = {'user': user }
     
-    return render(request, 'proyectofinal/profileDetails.html', context)
+    return render(request, 'profileDetails.html', context)
 
 def editProfile(request):
     user = request.user
@@ -263,7 +263,7 @@ def editProfile(request):
         
     context = {'u_form':u_form, 'p_form':p_form}
     
-    return render(request, 'proyectofinal/editProfile.html', context)
+    return render(request, 'editProfile.html', context)
 
 #LISTS AND GETS
 
@@ -276,7 +276,7 @@ def animeSearch(request):
         animes = Anime.objects.all()
     
     context = {'animes': animes}
-    return render(request, 'proyectofinal/animeList.html',context)
+    return render(request, 'animeList.html', context)
 
 def mangaSearch(request):
     
@@ -287,7 +287,7 @@ def mangaSearch(request):
         mangas = Manga.objects.all()
     
     context = {'mangas': mangas}
-    return render(request, 'proyectofinal/mangaList.html',context)
+    return render(request, 'mangaList.html', context)
 
 def studioSearch(request):
     
@@ -298,20 +298,20 @@ def studioSearch(request):
         studios = Studios.objects.all()
     
     context = {'studios': studios}
-    return render(request, 'proyectofinal/studiosList.html',context)
+    return render(request, 'studiosList.html', context)
 
 def noticePost(request):
     notices = Notices.objects.all()
     
     context = {'notices':notices}
     
-    return render(request, 'proyectofinal/noticesHome.html', context)
+    return render(request, 'noticesHome.html', context)
 
 def noticeDetail(request, id_notice):
     notice = Notices.objects.get(id = id_notice)
     
     context = {'notice': notice}
-    return render(request, 'proyectofinal/noticeDetail.html', context)
+    return render(request, 'noticeDetail.html', context)
 
 def createNotice(request):
     
@@ -330,7 +330,7 @@ def createNotice(request):
     
     context = {'form':form}
     
-    return render(request, 'proyectofinal/createNotice.html', context)
+    return render(request, 'createNotice.html', context)
 
 def aboutus(request):
-    return render(request, 'proyectofinal/aboutus.html')
+    return render(request, 'aboutus.html')

@@ -1,33 +1,42 @@
-{% extends "proyectofinal/base.html" %}
-{% load static %}
-{% block container%}
-    <div class="container border-0 shadow-lg" style="background-color:white">
-        <div class="row justify-content-evenly">
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-3 ">
-                <form  method="POST" enctype="multipart/form-data">{% csrf_token %}
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Titulo de la Noticia</label>
-                        {{form.title}}
-                    </div>
-                    <div class="mb-3 py-2">
-                        <label for="exampleFormControlInput1" class="form-label">Descripcion</label>
-                        {{form.description}}
-                    </div>
-                    <div class="col-md-12 py-2">
-                        <label for="exampleFormControlInput1" class="form-label">Cotenido</label>
-                        {{form.content}}
-                    </div>
-                    <div class="col-md-12 py-2">
-                        <label for="formFile" class="form-label">Imagen de Noticia</label>
-                        {{form.image}}
-                    </div>
-                    <div class="col-md-12 py-2">
-                        <label for="formFile" class="form-label">Usuario Creador</label>
-                        {{form.user}}
-                    </div>
-                    <button type="submit" class="btn btn-secondary">Guardar</button>
-                </form>
-            </div>
+{% extends "base.html" %} {% load static %} {% block container%}
+<div class="container border-0 shadow-lg" style="background-color: white">
+    <div class="row justify-content-evenly">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-3">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"
+                        >Titulo de la Noticia</label
+                    >
+                    {{form.title}}
+                </div>
+                <div class="mb-3 py-2">
+                    <label for="exampleFormControlInput1" class="form-label"
+                        >Descripcion</label
+                    >
+                    {{form.description}}
+                </div>
+                <div class="col-md-12 py-2">
+                    <label for="exampleFormControlInput1" class="form-label"
+                        >Cotenido</label
+                    >
+                    {{form.content}}
+                </div>
+                <div class="col-md-12 py-2">
+                    <label for="formFile" class="form-label"
+                        >Imagen de Noticia</label
+                    >
+                    {{form.image}}
+                </div>
+                <div class="col-md-12 py-2">
+                    <label for="formFile" class="form-label"
+                        >Usuario Creador</label
+                    >
+                    {{form.user}}
+                </div>
+                <button type="submit" class="btn btn-secondary">Guardar</button>
+            </form>
         </div>
     </div>
+</div>
 {% endblock %}

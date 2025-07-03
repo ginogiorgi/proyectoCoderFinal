@@ -1,30 +1,33 @@
-{% extends "proyectofinal/base.html"%}
-{% load static %}
-{% block container %}
-<div class="container border-0 shadow-lg" style="background-color:white">
+{% extends "base.html" %} {% load static %} {% block container %}
+<div class="container border-0 shadow-lg" style="background-color: white">
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 py-3 border">
             <div class="perfil">
                 <div class="img-profile">
-                    <img class="border border-4 border-dark rounded-circle mx-auto d-block" src="{{ user.profile.image.url }}"  style="max-width:400px;max-height:400px;">
+                    <img
+                        class="border border-4 border-dark rounded-circle mx-auto d-block"
+                        src="{{ user.profile.image.url }}"
+                        style="max-width: 400px; max-height: 400px"
+                    />
                 </div>
                 <div class="profile-content">
                     <div class="text-center">
-                        <h1 class="display-5" >{{user}}</h1>
+                        <h1 class="display-5">{{user}}</h1>
                         <h5>{{user.first_name}} {{user.last_name}}</h5>
                         <p class="card">{{ user.profile.bio}}</p>
                         {% if user == request.user %}
-                        <a href="{% url 'Edit Profile'%}"><button type="button" class="btn btn-secondary">Configurar Perfil</button></a>
+                        <a href="{% url 'Edit Profile'%}"
+                            ><button type="button" class="btn btn-secondary">
+                                Configurar Perfil
+                            </button></a
+                        >
                         {% endif %}
                     </div>
                 </div>
             </div>
-
         </div>
 
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-8 py-3 border">
-            
-        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-8 py-3 border"></div>
     </div>
 </div>
 {% endblock %}

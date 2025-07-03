@@ -1,33 +1,53 @@
-{% extends "proyectofinal/base.html"%}
-{% load static %}
-{% block container %}
-<div class="container border-0 shadow-lg" style="background-color:white">
+{% extends "base.html" %} {% load static %} {% block container %}
+<div class="container border-0 shadow-lg" style="background-color: white">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-3 border">
             <h1 class="text-center">QUIENES SOMOS?</h1>
-            <p class="text-center">Gino Giorgi y Facundo Jauregui dos amigos que fuimos a la escuela juntos y ahora somos estudiantes de la facultad tecnologica de rosario cursando la carrera de Ingenieria en Sistemas.</p><br>
-            <p class="text-center">Tenemos 23 anos y nos metimos en este curso para explorar un poco mas en este mundo de la programacion que tanto nos intrigo.</p><br>
+            <p class="text-center">
+                Gino Giorgi y Facundo Jauregui dos amigos que fuimos a la
+                escuela juntos y ahora somos estudiantes de la facultad
+                tecnologica de rosario cursando la carrera de Ingenieria en
+                Sistemas.
+            </p>
+            <br />
+            <p class="text-center">
+                Tenemos 23 anos y nos metimos en este curso para explorar un
+                poco mas en este mundo de la programacion que tanto nos intrigo.
+            </p>
+            <br />
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col">
-                  <div class="card">
-                    <img src="{% static 'img/IMG-20201219-WA0034.jpg' %}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Gino Giorgi</h5>
-                      <a href="https://www.instagram.com/ginogiorgi1/"><p class="card-text">Instagram</p></a>
+                    <div class="card">
+                        <img
+                            src="{% static 'img/IMG-20201219-WA0034.jpg' %}"
+                            class="card-img-top"
+                            alt="..."
+                        />
+                        <div class="card-body">
+                            <h5 class="card-title">Gino Giorgi</h5>
+                            <a href="https://www.instagram.com/ginogiorgi1/"
+                                ><p class="card-text">Instagram</p></a
+                            >
+                        </div>
                     </div>
-                  </div>
                 </div>
                 <div class="col">
-                  <div class="card">
-                    <img src="{% static 'img/WhatsApp Image 2022-05-19 at 12.45.33 PM.jpeg' %}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Facundo Jauregui</h5>
-                      <a href="https://www.instagram.com/facujaurey/"><p class="card-text">Instagram</p></a>
+                    <div class="card">
+                        <img
+                            src="{% static 'img/WhatsApp Image 2022-05-19 at 12.45.33 PM.jpeg' %}"
+                            class="card-img-top"
+                            alt="..."
+                        />
+                        <div class="card-body">
+                            <h5 class="card-title">Facundo Jauregui</h5>
+                            <a href="https://www.instagram.com/facujaurey/"
+                                ><p class="card-text">Instagram</p></a
+                            >
+                        </div>
                     </div>
-                  </div>
                 </div>
-
+            </div>
         </div>
     </div>
+    {% endblock %}
 </div>
-{% endblock %}

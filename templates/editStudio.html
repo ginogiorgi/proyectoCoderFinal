@@ -1,34 +1,45 @@
-{% extends "proyectofinal/base.html" %}
-{% load static %}
-{% block container%}
-    <div class="container border-0 shadow-lg" style="background-color:white">
-        <div class="row justify-content-evenly">
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4 py-4">
-                <div class="text-center">
-                    <img src="{{ studio.image.url }}" class="img-thumbnail" alt="">
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 py-3 ">
-                <form  method="POST" enctype="multipart/form-data">{% csrf_token %}
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Nombre del Estudio</label>
-                        {{form.name}}
-                    </div>
-                    <div class="mb-3 py-2">
-                        <label for="exampleFormControlInput1" class="form-label">Fecha de Fundacion</label>
-                        {{form.fundation_date}}
-                    </div>
-                    <div class="col-md-12 py-2">
-                        <label for="exampleFormControlInput1" class="form-label">Descripcion</label>
-                        {{form.description}}
-                    </div>
-                    <div class="col-md-12 py-2">
-                        <label for="formFile" class="form-label">Imagen de Portada</label>
-                        {{form.image}}
-                    </div>
-                    <button type="submit" class="btn btn-secondary">Guardar</button>
-                </form>
+{% extends "base.html" %} {% load static %} {% block container%}
+<div class="container border-0 shadow-lg" style="background-color: white">
+    <div class="row justify-content-evenly">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4 py-4">
+            <div class="text-center">
+                <img
+                    src="{{ studio.image.url }}"
+                    class="img-thumbnail"
+                    alt=""
+                />
             </div>
         </div>
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 py-3">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"
+                        >Nombre del Estudio</label
+                    >
+                    {{form.name}}
+                </div>
+                <div class="mb-3 py-2">
+                    <label for="exampleFormControlInput1" class="form-label"
+                        >Fecha de Fundacion</label
+                    >
+                    {{form.fundation_date}}
+                </div>
+                <div class="col-md-12 py-2">
+                    <label for="exampleFormControlInput1" class="form-label"
+                        >Descripcion</label
+                    >
+                    {{form.description}}
+                </div>
+                <div class="col-md-12 py-2">
+                    <label for="formFile" class="form-label"
+                        >Imagen de Portada</label
+                    >
+                    {{form.image}}
+                </div>
+                <button type="submit" class="btn btn-secondary">Guardar</button>
+            </form>
+        </div>
     </div>
+</div>
 {% endblock %}

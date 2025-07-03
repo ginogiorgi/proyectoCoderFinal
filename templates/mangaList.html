@@ -1,45 +1,86 @@
-{% extends "proyectofinal/base.html"%}
-{% load static %}
-{% block container %}
-    <div class="container border-0 shadow-lg" style="background-color:white">
-        <div class="row justify-content-end py-3">
-            <div class="col-4">
-                <form class="d-flex" method="GET" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="name">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-            <div class="col-4">
-            </div>
+{% extends "base.html" %} {% load static %} {% block container %}
+<div class="container border-0 shadow-lg" style="background-color: white">
+    <div class="row justify-content-end py-3">
+        <div class="col-4">
+            <form class="d-flex" method="GET" role="search">
+                <input
+                    class="form-control me-2"
+                    type="search"
+                    placeholder="Search"
+                    aria-label="Search"
+                    name="name"
+                />
+                <button class="btn btn-outline-success" type="submit">
+                    Search
+                </button>
+            </form>
         </div>
-            <div class="row">
-                <div class="container">
-                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-5 ">
-                        {% for manga in mangas %}
-                        <div class="card mb-3" style="max-width: 1200px; max-height:300px">
-                            <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="{{ manga.image.url }}" class="img-fluid rounded-start" style="max-width:200px;max-height:300px">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                <h3 class="card-title text-center">{{ manga.name }}</h3>
-                                <p class="card-text fs-5">{{ manga.description }}</p>
+        <div class="col-4"></div>
+    </div>
+    <div class="row">
+        <div class="container">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-5">
+                {% for manga in mangas %}
+                <div
+                    class="card mb-3"
+                    style="max-width: 1200px; max-height: 300px"
+                >
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img
+                                src="{{ manga.image.url }}"
+                                class="img-fluid rounded-start"
+                                style="max-width: 200px; max-height: 300px"
+                            />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h3 class="card-title text-center">
+                                    {{ manga.name }}
+                                </h3>
+                                <p class="card-text fs-5">
+                                    {{ manga.description }}
+                                </p>
                                 <ul>
-                                    <li><p class="card-text"><small class="text-muted"></small>{{manga.type}} ({{manga.volumenes}} Caps)</p></li>
-                                    <li><p class="card-text"><small class="text-muted"></small>{{manga.published}}</p></li>
-                                    <li><p class="card-text"><small class="text-muted"></small>{{manga.status}}</p></li>
+                                    <li>
+                                        <p class="card-text">
+                                            <small class="text-muted"></small
+                                            >{{manga.type}} ({{manga.volumenes}}
+                                            Caps)
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="card-text">
+                                            <small class="text-muted"></small
+                                            >{{manga.published}}
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="card-text">
+                                            <small class="text-muted"></small
+                                            >{{manga.status}}
+                                        </p>
+                                    </li>
                                 </ul>
-                                <a href=""><button type="button" class="btn btn-secondary btn-lg">Detalles</button></a>
-                                <p class="card-text"><small class="text-muted"></small></p>
-                                </div>
-                            </div>
+                                <a href=""
+                                    ><button
+                                        type="button"
+                                        class="btn btn-secondary btn-lg"
+                                    >
+                                        Detalles
+                                    </button></a
+                                >
+                                <p class="card-text">
+                                    <small class="text-muted"></small>
+                                </p>
                             </div>
                         </div>
-                        {% endfor %}
                     </div>
                 </div>
+                {% endfor %}
             </div>
+        </div>
     </div>
+</div>
 
 {% endblock%}
