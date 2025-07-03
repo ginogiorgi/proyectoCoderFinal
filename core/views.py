@@ -2,8 +2,8 @@ import re
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from ...ProyectoFinal.models import *
-from ...ProyectoFinal.forms import *
+from app.models import *
+from app.forms import *
 
 def homeView(request):
     notices = Notices.objects.all()

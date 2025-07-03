@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class ProyectofinalConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'ProyectoFinal'
+    name = 'app'

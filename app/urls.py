@@ -1,5 +1,5 @@
 from django.urls import path, include
-from ..apps.core.views import *
+from core.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView, LogoutView
