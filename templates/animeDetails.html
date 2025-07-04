@@ -55,9 +55,7 @@
                             padding-right: 0 !important;
                         "
                     >
-                        <strong>Fecha de lanzamiento:</strong> {% if
-                        anime.relase_date %}{{ anime.relase_date|date:"j \\d\\e
-                        F \\d\\e Y" }}{% else %}No disponible{% endif %}
+                        <strong>Fecha de lanzamiento:</strong> {% if anime.relase_date %}{{ anime.relase_date|date:"j \\d\\e F \\d\\e Y" }}{% else %}No disponible{% endif %}
                     </li>
                     <li
                         class="list-group-item py-2"
