@@ -27,12 +27,9 @@
                       </a>
                       <i class='bx bxs-chevron-down arrow' ></i>
                     </div>
-                    <ul class="sub-menu blank">
-                    <li><a class="link_name" href="{% url 'Home' %}">Home</a></li>
                     <ul class="sub-menu">
                         <li><a class="link_name" href="{% url 'Home' %}">Home</a></li>
                         <li><a href="{% url 'About Us' %}">About Us</a></li>
-                    </ul>
                     </ul>
                 </li>
                 <li>
@@ -112,8 +109,17 @@
         </nav>
         <div class="home-section" style="background-color:rgb(226, 206, 206)">
             <div class="home-content" style="background-color:white">
-            <i class='bx bx-menu' ></i>
-            <span class="text">Menu</span>
+            <i class='bx bx-menu' style="color: #e63946; font-size: 2rem;"></i>
+            <span class="text" style="
+                font-family: 'Poppins', sans-serif;
+                font-weight: 700;
+                font-size: 1.7rem;
+                color: #1d3557;
+                letter-spacing: 1.5px;
+                text-shadow: 1px 1px 8px #f1faee, 0 0 2px #457b9d;
+                margin-left: 8px;">
+                Geek <span style="color: #e63946;">Zone</span>
+            </span>
             </div>
             {% block container %}
             <div class="container border-0 shadow-lg" style="background-color:white">
