@@ -190,9 +190,16 @@
                          
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3">
-                      <form class="d-flex py-3" method="GET" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="username">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                      <form id="user-search-form" class="d-flex flex-column align-items-stretch py-3 position-relative" method="GET" role="search" style="max-width: 100%; gap: 0.5rem;">
+                        <div class="input-group" style="min-width: 270px; max-width: 100%;">
+                          <input class="form-control border-end-0" type="search" placeholder="Buscar usuario" aria-label="Buscar usuario" aria-describedby="user-info-icon user-search-btn" name="username" style="border-radius: 8px 0 0 8px; font-size: 1.08em; min-width: 160px; background: #f8fafc; color: #1d3557; font-weight: 500;" autocomplete="off" id="user-search-input">
+                          <span class="input-group-text bg-white border-start-0 px-2" id="user-info-icon" style="border-radius: 0; cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="Ingrese el nombre exacto o parcial del usuario y presione Enter o la lupa para ver su perfil.">
+                            <i class='bx bx-info-circle' style="color: #457b9d; font-size: 1.2em;"></i>
+                          </span>
+                          <button class="input-group-text bg-white border-start-0 px-2" id="user-search-btn" type="submit" style="border-radius: 0 8px 8px 0; cursor: pointer; border-left: none;" tabindex="-1">
+                            <i class='bx bx-search-alt-2' style="color: #1d3557; font-size: 1.3rem;"></i>
+                          </button>
+                        </div>
                       </form>
                         <div>
                             <table class="table table-striped border border-dark">
@@ -289,6 +296,31 @@
         
         
         <script src="{% static 'js/config.js' %}"></script>
+        <script>
+          // Inicializar tooltips de Bootstrap para el icono de información y manejar búsqueda
+          document.addEventListener('DOMContentLoaded', function () {
+            // Bootstrap 5 tooltip init
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+              // force tooltip to show on hover and focus
+              new bootstrap.Tooltip(tooltipTriggerEl, { trigger: 'hover focus', container: 'body' });
+            });
+            // Permitir buscar con Enter o con la lupa
+            var form = document.getElementById('user-search-form');
+            var input = document.getElementById('user-search-input');
+            var btn = document.getElementById('user-search-btn');
+            btn.addEventListener('click', function(e) {
+              e.preventDefault();
+              form.submit();
+            });
+            input.addEventListener('keydown', function(e) {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                form.submit();
+              }
+            });
+          });
+        </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" 
