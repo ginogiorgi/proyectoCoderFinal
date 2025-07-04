@@ -15,8 +15,12 @@
     <body style="background-color:rgb(226, 206, 206)">
         <nav class="sidebar close">
             <div class="logo-details">
-            <a href="{% url 'Home' %}"><i class=''><img src="{% static 'img/logo2.png' %}"></i></a>
-            <a href="{% url 'Home' %}" style="text-decoration:none;"><span class="logo_name">GeekZone</span></a>
+                <a href="{% url 'Home' %}" style="display: flex; align-items: center; text-decoration: none;">
+                    <i class='' style="display: flex; align-items: center; height: 48px; width: 48px;">
+                        <img src="{% static 'img/logo2.png' %}" style="max-height: 48px; max-width: 48px; display: block; margin: 0 auto;">
+                    </i>
+                </a>
+                <span class="logo_name" style="font-size: 1.3rem; font-weight: 700; color: #1d3557;">GeekZone</span>
             </div>
             <ul class="nav-links">
                 <li>
@@ -109,18 +113,18 @@
         </nav>
         <div class="home-section" style="background-color:rgb(226, 206, 206)">
             <div class="home-content" style="background-color:white">
-            <i class='bx bx-menu' style="color: #e63946; font-size: 2rem;"></i>
-            <a href="{% url 'Home' %}" style="text-decoration:none;">
-              <span class="text" style="
-                  font-family: 'Poppins', sans-serif;
-                  font-weight: 700;
-                  font-size: 1.7rem;
-                  color: #1d3557;
-                  letter-spacing: 1.5px;
-                  text-shadow: 1px 1px 8px #f1faee, 0 0 2px #457b9d;
-                  margin-left: 8px;">
-                  Geek <span style="color: #e63946;">Zone</span>
-              </span>
+            <i id="sidebar-toggle" class='bx bx-menu' style="color: #e63946; font-size: 2rem; cursor:default;" tabindex="-1"></i>
+            <a href="{% url 'Home' %}" style="text-decoration: none;">
+                <span class="text" style="
+                    font-family: 'Poppins', sans-serif;
+                    font-weight: 700;
+                    font-size: 1.7rem;
+                    color: #1d3557;
+                    letter-spacing: 1.5px;
+                    text-shadow: 1px 1px 8px #f1faee, 0 0 2px #457b9d;
+                    margin-left: 8px;">
+                    Geek <span style="color: #e63946;">Zone</span>
+                </span>
             </a>
             </div>
             {% block container %}
@@ -362,14 +366,10 @@
             });
           });
         </script>
+        <!-- Solo Bootstrap 5 bundle y jQuery (si es necesario) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" 
-        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" 
-        integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <script src="{% static 'js/config.js' %}"></script>
         <script src="{% static 'js/delete.js' %}"></script>
     </body>
 </html>
