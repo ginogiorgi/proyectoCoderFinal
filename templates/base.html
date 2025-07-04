@@ -125,7 +125,9 @@
             <div class="container border-0 shadow-lg" style="background-color:white">
                 <div class="row" >
                     <div class="col-sm-12 col-md-6 col-lg-9 col-xl-9 ">
-                        <p class="text-center fs-2"><b>NOVEDADES</b></p>
+                        <h2 class="section-title" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 2.1rem; color: #1d3557; letter-spacing: 1.5px; text-shadow: 1px 1px 8px #f1faee, 0 0 2px #457b9d; margin-bottom: 0.5em;">
+                          Bienvenido a <span style="color: #e63946;">Geek Zone</span>
+                        </h2>
                         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
                             <div class="carousel-indicators">
                               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -156,7 +158,7 @@
                             </button>
                         </div>
                         <div class="row">
-                          <p class="text-center fs-2"><br><br><br><b>Animes Populares</b></p>
+                          <h2 class="section-title">Animes Populares</h2>
                           <div class="row row-cols-1 row-cols-md-4 g-4">
                           {% for anime in animes %}
                             <div class="col">
@@ -172,7 +174,7 @@
                           </div>
                         </div> 
                         <div class="row">
-                          <p class="text-center fs-2"><b>Mangas Populares</b></p>
+                          <h2 class="section-title">Mangas Populares</h2>
                           <div class="row row-cols-1 row-cols-md-4 g-4">
                           {% for manga in mangas %}
                             <div class="col">
@@ -190,9 +192,9 @@
                          
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3">
-                      <form id="user-search-form" class="d-flex flex-column align-items-stretch py-3 position-relative" method="GET" role="search" style="max-width: 100%; gap: 0.5rem;">
-                        <div class="input-group" style="min-width: 270px; max-width: 100%;">
-                          <input class="form-control border-end-0" type="search" placeholder="Buscar usuario" aria-label="Buscar usuario" aria-describedby="user-info-icon user-search-btn" name="username" style="border-radius: 8px 0 0 8px; font-size: 1.08em; min-width: 160px; background: #f8fafc; color: #1d3557; font-weight: 500;" autocomplete="off" id="user-search-input">
+                      <form id="user-search-form" class="d-flex flex-column align-items-stretch py-3 position-relative w-100" method="GET" role="search" style="gap: 0.5rem;">
+                        <div class="input-group w-100" style="min-width: 220px; max-width: 100%;">
+                          <input class="form-control border-end-0" type="search" placeholder="Buscar usuario" aria-label="Buscar usuario" aria-describedby="user-info-icon user-search-btn" name="username" style="border-radius: 8px 0 0 8px; font-size: 1.08em; min-width: 120px; background: #f8fafc; color: #1d3557; font-weight: 500;" autocomplete="off" id="user-search-input">
                           <span class="input-group-text bg-white border-start-0 px-2" id="user-info-icon" style="border-radius: 0; cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="Ingrese el nombre exacto o parcial del usuario y presione Enter o la lupa para ver su perfil.">
                             <i class='bx bx-info-circle' style="color: #457b9d; font-size: 1.2em;"></i>
                           </span>
@@ -295,6 +297,33 @@
         
         
         
+        <style>
+          .section-title {
+            text-align: center;
+            font-size: 2.1rem;
+            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+            font-weight: 700;
+            color: #1d3557;
+            margin: 32px 0 24px 0;
+            padding-bottom: 0.3em;
+            position: relative;
+            letter-spacing: 0.5px;
+          }
+          .section-title::after {
+            content: '';
+            display: block;
+            margin: 0 auto;
+            margin-top: 0.35em;
+            width: 100%;
+            max-width: 100%;
+            position: relative;
+            height: 3px;
+            background: linear-gradient(90deg, #e63946 0%, #457b9d 100%);
+            border-radius: 2px;
+            opacity: 0.85;
+            z-index: 0;
+          }
+        </style>
         <script src="{% static 'js/config.js' %}"></script>
         <script>
           // Inicializar tooltips de Bootstrap para el icono de información y manejar búsqueda
