@@ -1,53 +1,245 @@
 {% extends "base.html" %} {% load static %} {% block container %}
 <div class="container border-0 shadow-lg" style="background-color: white">
     <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-3 border">
-            <h1 class="text-center">¿QUIÉNES SOMOS?</h1>
-            <p class="text-center">
-                Gino Giorgi y Facundo Jauregui, dos amigos que fuimos a la
-                escuela juntos y ahora somos estudiantes de la Facultad
-                Tecnológica de Rosario, cursando la carrera de Ingeniería en
-                Sistemas.
-            </p>
-            <br />
-            <p class="text-center">
-                Tenemos 23 años y nos inscribimos en este curso para explorar un
-                poco más este mundo de la programación que tanto nos intrigó.
-            </p>
-            <br />
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col">
-                    <div class="card">
-                        <img
-                            src="{% static 'img/IMG-20201219-WA0034.jpg' %}"
-                            class="card-img-top"
-                            alt="..."
-                        />
-                        <div class="card-body">
-                            <h5 class="card-title">Gino Giorgi</h5>
-                            <a href="https://www.instagram.com/ginogiorgi1/"
-                                ><p class="card-text">Instagram</p></a
+        <div class="col-12 py-3 border">
+            <h2
+                class="section-title"
+                style="
+                    font-family: 'Poppins', sans-serif;
+                    font-weight: 700;
+                    font-size: 2.1rem;
+                    color: #1d3557;
+                    letter-spacing: 1.5px;
+                    text-shadow: 1px 1px 8px #f1faee, 0 0 2px #457b9d;
+                    margin-bottom: 0.5em;
+                "
+            >
+                ¿QUIÉNES SOMOS?
+            </h2>
+            <div
+                style="
+                    border: 2.5px solid #e63946;
+                    border-radius: 14px;
+                    background: rgba(255,255,255,0.99);
+                    box-shadow: 0 2px 10px 0 rgba(230,57,70,0.06);
+                    padding: 18px 1.2em 12px 1.2em;
+                    max-width: 1050px;
+                    margin: 0 auto 28px auto;
+                "
+            >
+                <p
+                    class="text-start"
+                    style="
+                        font-size: 1.15rem;
+                        max-width: 1000px;
+                        margin: 12px auto 28px auto;
+                        color: #222;
+                        padding-left: 1vw;
+                        padding-right: 1vw;
+                        text-indent: 1em;
+                        line-height: 1.7;
+                        text-align: justify;
+                        font-family: 'Open Sans', Arial, sans-serif;
+                    "
+                >
+                    Somos Gino Rubén Giorgi y Facundo Jauregui, dos amigos que
+                    compartimos nuestra formación desde la escuela secundaria y
+                    actualmente continuamos nuestro camino académico en la Facultad
+                    Tecnológica de Rosario, donde estudiamos Ingeniería en Sistemas.
+                    Nuestra pasión por la tecnología y el aprendizaje constante nos
+                    llevó a inscribirnos en el curso de Python de Coderhouse, con el
+                    objetivo de profundizar nuestros conocimientos y explorar nuevas
+                    herramientas en el mundo de la programación.
+                </p>
+                <p
+                    class="text-start"
+                    style="
+                        font-size: 1.15rem;
+                        max-width: 1000px;
+                        margin: 12px auto 0 auto;
+                        color: #222;
+                        padding-left: 1vw;
+                        padding-right: 1vw;
+                        text-indent: 1em;
+                        line-height: 1.7;
+                        text-align: justify;
+                        font-family: 'Open Sans', Arial, sans-serif;
+                    "
+                >
+                    Este proyecto web es el resultado de nuestro trabajo conjunto,
+                    donde aplicamos tanto los conceptos adquiridos en la universidad
+                    como las habilidades desarrolladas en Coderhouse. Creemos en el
+                    poder de la colaboración, la dedicación y la curiosidad para
+                    crecer profesionalmente y aportar soluciones innovadoras. Nos
+                    motiva seguir aprendiendo y enfrentar nuevos desafíos en el
+                    ámbito del desarrollo de software.
+                </p>
+            </div>
+            <div
+                class="row row-cols-1 row-cols-md-2 g-4 justify-content-center"
+            >
+                <div class="col d-flex align-items-stretch">
+                    <div
+                        class="card w-100 h-100 shadow-sm"
+                        style="
+                            border-radius: 14px;
+                            max-width: 520px;
+                            margin: 0 auto;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                        "
+                    >
+                        <div style="width: 100%">
+                            <img
+                                src="{% static 'img/IMG-20201219-WA0034.jpg' %}"
+                                class="card-img-top mx-auto d-block"
+                                alt="Gino Giorgi"
+                                style="
+                                    object-fit: cover;
+                                    height: 440px;
+                                    width: 100%;
+                                    max-width: 520px;
+                                    border-radius: 14px 14px 0 0;
+                                "
+                            />
+                        </div>
+                        <div
+                            class="card-body d-flex flex-column align-items-center"
+                            style="width: 100%; padding-top: 1.1rem"
+                        >
+                            <h5
+                                class="card-title"
+                                style="color: #e63946; font-weight: 700"
                             >
+                                Gino Rubén Giorgi
+                            </h5>
+                            <div class="d-flex flex-row gap-3 mt-2">
+                                <a
+                                    href="https://www.linkedin.com/in/ginorubengiorgi/"
+                                    class="text-decoration-none d-flex align-items-center gap-1"
+                                    style="color: #0077b5; font-size: 1.15em"
+                                    title="LinkedIn"
+                                    target="_blank"
+                                    rel="noopener"
+                                    ><i
+                                        class="bx bxl-linkedin-square"
+                                        style="font-size: 1.3em"
+                                    ></i
+                                    ><span>ginorubengiorgi</span></a
+                                >
+                                <a
+                                    href="https://github.com/ginogiorgi"
+                                    class="text-decoration-none d-flex align-items-center gap-1"
+                                    style="color: #333; font-size: 1.15em"
+                                    title="GitHub"
+                                    target="_blank"
+                                    rel="noopener"
+                                    ><i
+                                        class="bx bxl-github"
+                                        style="font-size: 1.3em"
+                                    ></i
+                                    ><span>ginogiorgi</span></a
+                                >
+                                <a
+                                    href="https://www.instagram.com/ginogiorgi1/"
+                                    class="text-decoration-none d-flex align-items-center gap-1"
+                                    style="color: #e4405f; font-size: 1.15em"
+                                    title="Instagram"
+                                    target="_blank"
+                                    rel="noopener"
+                                    ><i
+                                        class="bx bxl-instagram"
+                                        style="font-size: 1.3em"
+                                    ></i
+                                    ><span>ginogiorgi1</span></a
+                                >
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card">
-                        <img
-                            src="{% static 'img/WhatsApp Image 2022-05-19 at 12.45.33 PM.jpeg' %}"
-                            class="card-img-top"
-                            alt="..."
-                        />
-                        <div class="card-body">
-                            <h5 class="card-title">Facundo Jauregui</h5>
-                            <a href="https://www.instagram.com/facujaurey/"
-                                ><p class="card-text">Instagram</p></a
+                <div class="col d-flex align-items-stretch">
+                    <div
+                        class="card w-100 h-100 shadow-sm"
+                        style="
+                            border-radius: 14px;
+                            max-width: 520px;
+                            margin: 0 auto;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                        "
+                    >
+                        <div style="width: 100%">
+                            <img
+                                src="{% static 'img/WhatsApp Image 2022-05-19 at 12.45.33 PM.jpeg' %}"
+                                class="card-img-top mx-auto d-block"
+                                alt="Facundo Jauregui"
+                                style="
+                                    object-fit: cover;
+                                    height: 440px;
+                                    width: 100%;
+                                    max-width: 520px;
+                                    border-radius: 14px 14px 0 0;
+                                "
+                            />
+                        </div>
+                        <div
+                            class="card-body d-flex flex-column align-items-center"
+                            style="width: 100%; padding-top: 1.1rem"
+                        >
+                            <h5
+                                class="card-title"
+                                style="color: #e63946; font-weight: 700"
                             >
+                                Facundo Jauregui
+                            </h5>
+                            <div class="d-flex flex-row gap-3 mt-2">
+                                <a
+                                    href="https://www.linkedin.com/in/facundojauregui/"
+                                    class="text-decoration-none d-flex align-items-center gap-1"
+                                    style="color: #0077b5; font-size: 1.15em"
+                                    title="LinkedIn"
+                                    target="_blank"
+                                    rel="noopener"
+                                    ><i
+                                        class="bx bxl-linkedin-square"
+                                        style="font-size: 1.3em"
+                                    ></i
+                                    ><span>facundojauregui</span></a
+                                >
+                                <a
+                                    href="https://github.com/FacundoJauregui"
+                                    class="text-decoration-none d-flex align-items-center gap-1"
+                                    style="color: #333; font-size: 1.15em"
+                                    title="GitHub"
+                                    target="_blank"
+                                    rel="noopener"
+                                    ><i
+                                        class="bx bxl-github"
+                                        style="font-size: 1.3em"
+                                    ></i
+                                    ><span>FacundoJauregui</span></a
+                                >
+                                <a
+                                    href="https://www.instagram.com/facujaurey/"
+                                    class="text-decoration-none d-flex align-items-center gap-1"
+                                    style="color: #e4405f; font-size: 1.15em"
+                                    title="Instagram"
+                                    target="_blank"
+                                    rel="noopener"
+                                    ><i
+                                        class="bx bxl-instagram"
+                                        style="font-size: 1.3em"
+                                    ></i
+                                    ><span>facujaurey</span></a
+                                >
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {% endblock %}
 </div>
+{% endblock %}
