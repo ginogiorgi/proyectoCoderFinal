@@ -1,21 +1,53 @@
-{% extends "base.html" %}
-{% load static %}
-{% block container %}
-<div class="container border-0 shadow-lg" style="background-color:white">
+{% extends "base.html" %} {% load static %} {% block container %}
+<div class="container border-0 shadow-lg" style="background-color: white">
     <div class="text-center">
         <h1 class="py-3">Ultimas Novedades</h1>
     </div>
     <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-3 ">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-3">
             {% for notice in notices %}
-                <div class="card mb-5">
-                    <a href="{% url 'Notice Details' notice.id%}"><img src="{{notice.image.url}}" class="card-img-top" style="max-height:450px">
-                    <div class="card-body">
-                    <h5 class="card-title text-center">{{notice.title}}</h5></a>  
-                    <p class="card-text">{{notice.description}}</p>
-                    <p class="card-text"><small class="text-muted">{{notice.timestamp}}</small></p>
+            <div class="card mb-5 position-relative">
+                <a href="{% url 'Notice Details' notice.id%}">
+                    <img
+                        src="{{notice.image.url}}"
+                        class="card-img-top"
+                        style="max-height: 450px"
+                    />
+                    <div
+                        class="noticia-overlay d-flex flex-column align-items-center justify-content-end"
+                        style="
+                            background: #000;
+                            opacity: 0.95;
+                            min-height: 110px;
+                        "
+                    >
+                        <div class="w-100 text-center">
+                            <div
+                                class="bg-black text-white fw-bold px-3 py-2 mb-2 rounded-3 shadow-lg"
+                                style="display: inline-block; font-size: 1.2rem"
+                            >
+                                {{notice.title}}
+                            </div>
+                        </div>
+                        <div class="w-100 text-center">
+                            <div
+                                class="bg-black text-white px-3 py-2 rounded-3 shadow-lg"
+                                style="
+                                    display: inline-block;
+                                    font-size: 1.05rem;
+                                "
+                            >
+                                {{notice.description}}
+                            </div>
+                        </div>
                     </div>
+                </a>
+                <div class="card-body">
+                    <p class="card-text">
+                        <small class="text-muted">{{notice.timestamp}}</small>
+                    </p>
                 </div>
+            </div>
             {% endfor %}
         </div>
     </div>

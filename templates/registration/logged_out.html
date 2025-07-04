@@ -1,0 +1,7 @@
+{% extends "base.html" %} {% block container %}
+<div class="container text-center py-5">
+    <h2>Sesión cerrada</h2>
+    <p>Has cerrado sesión correctamente.</p>
+    <a href="{% url 'Login' %}" class="btn btn-primary mt-3">Iniciar sesión</a>
+</div>
+{% endblock %}

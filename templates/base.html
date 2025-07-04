@@ -128,12 +128,13 @@
                             </div>
                             <div class="carousel-inner rounded">
                             {% for notice in notices %}
-                              <div class="carousel-item active">
+                              <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                 <a href="{% url 'Notice Details' notice.id %}">
                                   <img src="{{ notice.image.url }}" class="d-block w-100" alt="...">
-                                  <div class="carousel-caption d-none d-md-block">
-                                    <h5>{{ notice.title }}</h5>
-                                    <p></p>
+                                  <div class="carousel-caption d-none d-md-block p-0" style="bottom:0;">
+                                    <div class="bg-black bg-opacity-95 rounded-3 px-4 py-3 mx-auto w-100" style="max-width: 700px;">
+                                      <p class="mb-0 text-white fs-5 fw-bold text-center" style="text-shadow: 2px 2px 8px #000;">{{ notice.title }}</p>
+                                    </div>
                                   </div>
                                 </a>
                               </div>

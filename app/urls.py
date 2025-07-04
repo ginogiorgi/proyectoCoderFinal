@@ -1,9 +1,20 @@
-
 from django.urls import path, include
 from core.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView, LogoutView
+
+from django.views.decorators.csrf import csrf_exempt
+
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.views import View
+
+class LogoutViewGet(View):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return redirect(reverse('Login'))
 
 urlpatterns = [
     path('',homeView, name = 'Home'),
@@ -20,7 +31,7 @@ urlpatterns = [
     path('editStudio/<int:id_studio>', editStudio, name = 'Edit Studio'),
     path('registerUser/', registerUser, name = 'Register'),
     path('loginUser/', loginRequest, name = 'Login'),
-    path('logout/', LogoutView.as_view(next_page='Login'), name = 'Logout'),
+    path('logout/', LogoutViewGet.as_view(), name = 'Logout'),
     path('profileDetails/<str:username>/',profile, name = 'Profile'),
     path('editProfile/', editProfile, name = 'Edit Profile'),
     path('animeList/', animeSearch, name = 'Anime Search'),
