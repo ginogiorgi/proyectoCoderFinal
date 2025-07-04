@@ -1,3 +1,21 @@
+# Vista de detalle de Manga
+def mangaDetails(request, id_manga):
+    try:
+        manga = Manga.objects.get(id=id_manga)
+    except Manga.DoesNotExist:
+        messages.error(request, 'El manga no existe.')
+        return redirect('Manga Search')
+    context = {'manga': manga}
+    return render(request, 'mangaDetails.html', context)
+# Vista de detalle de Anime
+def animeDetails(request, id_anime):
+    try:
+        anime = Anime.objects.get(id=id_anime)
+    except Anime.DoesNotExist:
+        messages.error(request, 'El anime no existe.')
+        return redirect('Anime Search')
+    context = {'anime': anime}
+    return render(request, 'animeDetails.html', context)
 import re
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login

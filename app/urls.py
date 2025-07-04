@@ -1,3 +1,4 @@
+
 from django.urls import path, include
 from core.views import *
 from django.conf import settings
@@ -9,15 +10,17 @@ urlpatterns = [
     path('animeData/', animeData, name = 'Anime Data'),
     path('animeDelete/<int:id_anime>/', deleteAnime, name = 'Delete Anime'),
     path('editAnime/<int:id_anime>', editAnime, name = 'Edit Anime'),
+    path('animeDetails/<int:id_anime>/', animeDetails, name = 'Anime Details'),
     path('mangaData/', mangaData, name = 'Manga Data'),
     path('mangaDelete/<int:id_manga>/', deleteManga, name = 'Delete Manga'),
     path('editManga/<int:id_manga>', editManga, name = 'Edit Manga'),
+    path('mangaDetails/<int:id_manga>/', mangaDetails, name = 'Manga Details'),
     path('studioData/', studioData, name = 'Studio Data'),
     path('studioDelete/<int:id_studio>/', deleteStudio, name = 'Delete Studio'),
     path('editStudio/<int:id_studio>', editStudio, name = 'Edit Studio'),
     path('registerUser/', registerUser, name = 'Register'),
     path('loginUser/', loginRequest, name = 'Login'),
-    path('logout/', LogoutView.as_view(), name = 'Logout'),
+    path('logout/', LogoutView.as_view(next_page='Login'), name = 'Logout'),
     path('profileDetails/<str:username>/',profile, name = 'Profile'),
     path('editProfile/', editProfile, name = 'Edit Profile'),
     path('animeList/', animeSearch, name = 'Anime Search'),

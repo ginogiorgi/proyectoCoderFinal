@@ -4,45 +4,44 @@
         <div class="col-sm-12 col-md-12 col-lg-4 py-4">
             <div class="text-center">
                 <img
-                    src="{{ anime.image.url }}"
+                    src="{{ manga.image.url }}"
                     class="img-thumbnail"
-                    alt="{{ anime.name }}"
+                    alt="{{ manga.name }}"
                     style="max-height: 400px"
                 />
             </div>
         </div>
         <div class="col-sm-12 col-md-12 col-lg-8 py-3">
-            <h2>{{ anime.name }}</h2>
+            <h2>{{ manga.name }}</h2>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                    <strong>Tipo:</strong> {{ anime.get_type_display }}
+                    <strong>Tipo:</strong> {{ manga.get_type_display }}
                 </li>
                 <li class="list-group-item">
-                    <strong>Episodios:</strong> {{ anime.episodes }}
+                    <strong>Volúmenes:</strong> {{ manga.volumenes }}
                 </li>
                 <li class="list-group-item">
-                    <strong>Fecha de lanzamiento:</strong> {{ anime.relase_date
-                    }}
+                    <strong>Fecha de publicación:</strong> {{ manga.published }}
                 </li>
                 <li class="list-group-item">
-                    <strong>Estudio:</strong> {{ anime.studio }}
+                    <strong>Autor:</strong> {{ manga.author }}
                 </li>
                 <li class="list-group-item">
-                    <strong>Géneros:</strong> {{ anime.genres }}
+                    <strong>Géneros:</strong> {{ manga.genres }}
                 </li>
                 <li class="list-group-item">
-                    <strong>Duración:</strong> {{ anime.duration }}
+                    <strong>Estado:</strong> {{ manga.get_status_display }}
                 </li>
             </ul>
             <div class="mt-3">
                 <h5>Descripción</h5>
-                <p>{{ anime.description }}</p>
+                <p>{{ manga.description }}</p>
             </div>
             <div class="mt-3">
                 <h5>Antecedentes</h5>
-                <p>{{ anime.backgroun }}</p>
+                <p>{{ manga.background }}</p>
             </div>
-            <a href="{% url 'Anime Search' %}" class="btn btn-primary mt-3"
+            <a href="{% url 'Manga Search' %}" class="btn btn-primary mt-3"
                 >Volver a la lista</a
             >
         </div>
