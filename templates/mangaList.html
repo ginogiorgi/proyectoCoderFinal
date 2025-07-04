@@ -1,25 +1,43 @@
 {% extends "base.html" %} {% load static %} {% block container %}
 <div class="container border-0 shadow-lg" style="background-color: white">
-    <div class="row justify-content-end py-3">
-        <div class="col-4">
-            <form class="d-flex" method="GET" role="search">
+    <div class="row pt-4 pb-2">
+        <div class="col-12 d-flex align-items-center justify-content-between">
+            <h2
+                class="section-title text-start"
+                style="color: #e63946; font-weight: 700; margin-bottom: 0"
+            >
+                Lista de Mangas
+            </h2>
+            <form
+                class="d-flex"
+                method="GET"
+                role="search"
+                style="max-width: 350px"
+            >
                 <input
                     class="form-control me-2"
                     type="search"
-                    placeholder="Search"
-                    aria-label="Search"
+                    placeholder="Buscar"
+                    aria-label="Buscar"
                     name="name"
                 />
-                <button class="btn btn-outline-success" type="submit">
-                    Search
+                <button
+                    class="btn"
+                    type="submit"
+                    style="
+                        background-color: #e63946;
+                        color: white;
+                        font-weight: 600;
+                    "
+                >
+                    Buscar
                 </button>
             </form>
         </div>
-        <div class="col-4"></div>
     </div>
     <div class="row">
         <div class="container">
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-5">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-4">
                 {% for manga in mangas %}
                 <div
                     class="card mb-3"
@@ -35,44 +53,73 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h3 class="card-title text-center">
+                                <h3
+                                    class="card-title text-start"
+                                    style="color: #e63946; font-weight: 700"
+                                >
                                     {{ manga.name }}
                                 </h3>
                                 <p class="card-text fs-5">
-                                    {{ manga.description }}
+                                    {{ manga.description|truncatechars:120 }}
                                 </p>
-                                <ul>
-                                    <li>
-                                        <p class="card-text">
-                                            <small class="text-muted"></small
-                                            >{{manga.type}} ({{manga.volumenes}}
-                                            Caps)
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p class="card-text">
-                                            <small class="text-muted"></small
-                                            >{{manga.published}}
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p class="card-text">
-                                            <small class="text-muted"></small
-                                            >{{manga.status}}
-                                        </p>
-                                    </li>
-                                </ul>
-                                <a href="{% url 'Manga Details' manga.id %}">
-                                    <button
-                                        type="button"
-                                        class="btn btn-secondary btn-lg"
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <ul class="list-unstyled mb-0">
+                                            <li>
+                                                <strong>Volúmenes:</strong> {{
+                                                manga.volumenes }}
+                                            </li>
+                                            <li>
+                                                <strong
+                                                    >Fecha de
+                                                    publicación:</strong
+                                                >
+                                                {% if manga.published %}{{
+                                                manga.published|date:"j \d\e F
+                                                \d\e Y" }}{% else %}No
+                                                disponible{% endif %}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <ul class="list-unstyled mb-0">
+                                            <li>
+                                                <strong>Autor:</strong> {{
+                                                manga.author }}
+                                            </li>
+                                            <li>
+                                                <strong>Géneros:</strong> {{
+                                                manga.genres }}
+                                            </li>
+                                            <li>
+                                                <strong>Estado:</strong> {{
+                                                manga.get_status_display }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div
+                                    class="d-flex justify-content-end align-items-end"
+                                    style="height: 100%; min-height: 48px"
+                                >
+                                    <a
+                                        href="{% url 'Manga Details' manga.id %}"
                                     >
-                                        Detalles
-                                    </button>
-                                </a>
-                                <p class="card-text">
-                                    <small class="text-muted"></small>
-                                </p>
+                                        <button
+                                            type="button"
+                                            class="btn btn-lg mt-2"
+                                            style="
+                                                background-color: #e63946;
+                                                color: white;
+                                                font-weight: 600;
+                                                border: none;
+                                                min-width: 120px;
+                                            "
+                                        >
+                                            Detalles
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
