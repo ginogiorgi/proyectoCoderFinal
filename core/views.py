@@ -30,34 +30,48 @@ def homeView(request):
     mangas_list = []
     anime_list = []
     notice_list = []
-    top5 = Anime.objects.order_by('-id')[:5]
+    # Top 3 animes y top 2 mangas para el top5
+    top5 = []
+    for anime in Anime.objects.order_by('-id')[:3]:
+        if anime.id:
+            top5.append({'obj': anime, 'type': 'anime'})
+    for manga in Manga.objects.order_by('-id')[:2]:
+        if manga.id:
+            top5.append({'obj': manga, 'type': 'manga'})
+
     toppopular = Anime.objects.order_by('-id')[:10]
     toplonger = Anime.objects.order_by('-episodes')[:10]
-    
+
     for i in mangas:
         if len(mangas_list) == 4:
             break
         mangas_list.append(i)
-    
+
     for i in animes:
         if len(anime_list) == 4:
             break
         anime_list.append(i)
-        
+
     for i in notices:
         if len(notice_list) == 3:
             break
         notice_list.append(i)
-    
+
     if request.GET:
         user_search = request.GET['username']
         users = User.objects.filter(username__icontains = user_search)
         context = {'users':users}
-        
         return render(request, 'profileList.html', context)
-    
-    context = {'notices':notice_list, 'mangas': mangas_list, 'animes': anime_list, 'toplonger':toplonger,'toppopular':toppopular,'top5':top5}
-        
+
+    context = {
+        'notices': notice_list,
+        'mangas': mangas_list,
+        'animes': anime_list,
+        'toplonger': toplonger,
+        'toppopular': toppopular,
+        'top5': top5
+    }
+    return render(request, 'base.html', context)
     return render(request, 'base.html', context)
 
 #CRUD Anime
