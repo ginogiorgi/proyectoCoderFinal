@@ -1,33 +1,40 @@
 {% extends "base.html" %} {% load static %} {% block container %}
-<div class="container border-0 shadow-lg" style="background-color: white">
-    <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 py-3 border">
-            <div class="perfil">
-                <div class="img-profile">
-                    <img
-                        class="border border-4 border-dark rounded-circle mx-auto d-block"
-                        src="{{ user.profile.image.url }}"
-                        style="max-width: 400px; max-height: 400px"
-                    />
-                </div>
-                <div class="profile-content">
-                    <div class="text-center">
-                        <h1 class="display-5">{{user}}</h1>
-                        <h5>{{user.first_name}} {{user.last_name}}</h5>
-                        <p class="card">{{ user.profile.bio}}</p>
-                        {% if user == request.user %}
-                        <a href="{% url 'Edit Profile'%}"
-                            ><button type="button" class="btn btn-secondary">
-                                Configurar Perfil
-                            </button></a
-                        >
-                        {% endif %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7 col-md-9">
+            <div class="card shadow-lg border-0 rounded-4 p-4" style="background: white;">
+                <div class="text-center mb-3">
+                    <div class="profile-img-wrapper position-relative mb-2 mx-auto">
+                        <img
+                            src="{{ user.profile.image.url }}"
+                            class="rounded-circle border border-3 border-danger shadow"
+                            style="width: 140px; height: 140px; object-fit: cover; background: #f8fafc;"
+                            alt="Avatar"
+                        />
                     </div>
+                    <h2 class="fw-bold text-center mb-1" style="color: #e63946;">{{ user.username }}</h2>
+                    <h5 class="text-center mb-2" style="color: #1d3557;">{{ user.first_name }} {{ user.last_name }}</h5>
+                    <p class="text-center text-muted mb-3" style="font-size: 1.08em;">{{ user.email }}</p>
+                    <p class="text-center mb-3" style="color: #1d3557; background: #f8fafc; border-radius: 8px; padding: 0.7em 1em; font-size: 1.08em;">
+                        {{ user.profile.bio|default:"Sin biografía." }}
+                    </p>
+                    {% if user == request.user %}
+                    <a href="{% url 'Edit Profile' %}">
+                        <button type="button" class="btn fw-bold" style="background-color: #e63946; color: white; border-radius: 8px; font-size: 1.08em;">
+                            Configurar Perfil
+                        </button>
+                    </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
-
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-8 py-3 border"></div>
     </div>
 </div>
+<style>
+    .profile-img-wrapper {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto;
+    }
+</style>
 {% endblock %}
