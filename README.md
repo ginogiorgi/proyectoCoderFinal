@@ -2,7 +2,7 @@
 
 ## Español
 
-Trabajo realizado por Gino Giorgi y Facundo Jauregui como proyecto final del curso de Python en Coderhouse.
+Trabajo realizado por Gino Giorgi y Facundo Jauregui como proyecto final del curso de Python en Coderhouse. Para modo administrador, usuario: admin, contraseña: admin.
 
 ### Funcionalidades
 
@@ -30,7 +30,7 @@ Trabajo realizado por Gino Giorgi y Facundo Jauregui como proyecto final del cur
 
 ## English
 
-Project developed by Gino Giorgi and Facundo Jauregui as the final project for the Python course at Coderhouse.
+Project developed by Gino Giorgi and Facundo Jauregui as the final project for the Python course at Coderhouse. For administrator mode, username: admin, password: admin.
 
 ### Features
 
