@@ -1,6 +1,20 @@
 import os
 from pathlib import Path
 
+# ...existing code...
+
+# Cambia a True para desarrollo local
+DEBUG = True
+
+# Silenciar logs de archivos estáticos y media en producción
+import logging
+if not DEBUG:
+    logging.getLogger('django.server').setLevel(logging.ERROR)
+    logging.getLogger('django.request').setLevel(logging.ERROR)
+    logging.getLogger('django.security').setLevel(logging.ERROR)
+import os
+from pathlib import Path
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -13,8 +27,8 @@ SECRET_KEY = 'django-insecure-6jspc+k@yl-qj(c=8-r_j0-z%y)-4kz3p)$g7wore*q0ju2-8_
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# Cambia a False en producción
-DEBUG = False
+# Cambia a True para desarrollo local
+DEBUG = True
 
 # Agrega el dominio de Render y localhost para pruebas
 ALLOWED_HOSTS = [
@@ -119,11 +133,10 @@ STATIC_URL = '/static/'
 # Carpeta donde collectstatic pondrá los archivos para producción
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Solo usar STATICFILES_DIRS en desarrollo
-if DEBUG:
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'core/static'),
-    ]
+# Siempre usar STATICFILES_DIRS para que Django encuentre los estáticos en local y producción
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'core/static'),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
