@@ -1,26 +1,20 @@
 {% extends "base.html" %} {% load static %} {% block container %}
-<div class="container py-5">
-    <div class="row justify-content-between align-items-center mb-4">
-        <div class="col-md-6">
-            <h2 class="fw-bold mb-0" style="color: #e63946; font-size: 2rem; letter-spacing: 0.5px;">Estudios</h2>
-        </div>
-        <div class="col-md-4">
-            <form class="d-flex" method="GET" role="search">
-                <input
-                    class="form-control me-2"
-                    type="search"
-                    placeholder="Buscar estudio..."
-                    aria-label="Search"
-                    name="name"
-                    style="border-radius: 8px; background: #f8fafc; color: #1d3557; font-weight: 500; border: 1px solid #dee2e6; font-size: 1.08em; padding: 0.7em 1em;"
-                />
-                <button class="btn fw-bold" type="submit" style="background-color: #e63946; color: white; border-radius: 8px; font-size: 1.08em;">
-                    Buscar
-                </button>
-            </form>
-        </div>
-    </div>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+<div class="container px-0" style="padding-top:0 !important; padding-bottom:0 !important;">
+    <div class="w-100 mx-auto" style="max-width: 1300px; background: #fff; border-radius: 0; border: none; box-shadow: none; padding: 2.5rem 2.2rem 2.5rem 2.2rem; margin-top:0; margin-bottom:0;">
+        <form class="mx-auto mb-4 position-relative" method="GET" role="search" style="max-width: 800px;">
+            <input
+                class="form-control ps-3 pe-5 py-2"
+                type="search"
+                placeholder="Buscar"
+                aria-label="Search"
+                name="name"
+                style="border-radius: 12px; background: #f8fafc; color: #1d3557; font-weight: 500; border: 1.5px solid #e2cece; font-size: 1.13em; height: 48px; box-shadow: 0 2px 8px #0001; width: 100%;"
+            />
+            <button type="submit" class="btn position-absolute top-50 end-0 translate-middle-y pe-3 ps-2 py-0 border-0 bg-transparent" style="z-index: 2;" tabindex="-1">
+                <i class="bx bx-search" style="font-size: 1.5em; color: #e63946;"></i>
+            </button>
+        </form>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {% for studio in studios %}
         <div class="col d-flex">
             <div class="card shadow-lg border-0 rounded-4 flex-fill d-flex flex-column" style="background: white; min-height: 340px;">
@@ -34,12 +28,15 @@
                     <h5 class="fw-bold mb-2 text-truncate-2" style="color: #e63946; font-size: 1.18rem; min-height: 2.5em; line-height: 1.3; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical;">{{ studio.name }}</h5>
                     <p class="mb-2 text-muted" style="font-size: 1.05rem;">Fundado: {{ studio.fundation_date }}</p>
                     <div class="mt-auto">
-                        <a href="" class="btn fw-bold w-100" style="background-color: #1d3557; color: white; border-radius: 8px; font-size: 1.05em;">Detalles</a>
+                        <a href="" class="btn fw-bold w-100" style="background-color: #e63946; color: white; border-radius: 8px; font-size: 1.05em;">
+                            Detalles
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
         {% endfor %}
+    </div>
     </div>
 </div>
 <style>
