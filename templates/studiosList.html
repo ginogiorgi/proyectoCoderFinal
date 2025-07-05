@@ -8,6 +8,7 @@
                 placeholder="Buscar"
                 aria-label="Search"
                 name="name"
+                value="{{ studio_search|default:'' }}"
                 style="border-radius: 12px; background: #f8fafc; color: #1d3557; font-weight: 500; border: 1.5px solid #e2cece; font-size: 1.13em; height: 48px; box-shadow: 0 2px 8px #0001; width: 100%;"
             />
             <button type="submit" class="btn position-absolute top-50 end-0 translate-middle-y pe-3 ps-2 py-0 border-0 bg-transparent" style="z-index: 2;" tabindex="-1">
@@ -37,6 +38,39 @@
         </div>
         {% endfor %}
     </div>
+    <!-- PAGINACIÓN -->
+    {% if studios.has_other_pages %}
+    <nav aria-label="Paginación" class="mt-4">
+      <ul class="pagination justify-content-center custom-paginator">
+        {% if studios.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?name={{ studio_search }}&page={{ studios.previous_page_number }}" aria-label="Anterior">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+        {% else %}
+          <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+        {% endif %}
+        {% for num in studios.paginator.page_range %}
+          {% if studios.number == num %}
+            <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+          {% elif num > studios.number|add:'-3' and num < studios.number|add:'3' %}
+            <li class="page-item"><a class="page-link" href="?name={{ studio_search }}&page={{ num }}">{{ num }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if studios.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?name={{ studio_search }}&page={{ studios.next_page_number }}" aria-label="Siguiente">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        {% else %}
+          <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% endif %}
+    <!-- FIN PAGINACIÓN -->
     </div>
 </div>
 <style>
@@ -46,6 +80,30 @@
         -webkit-line-clamp: 2;
         line-clamp: 2;
         -webkit-box-orient: vertical;
+    }
+    .custom-paginator .page-link {
+        color: #e63946;
+        border-color: #e63946;
+        font-weight: 500;
+        background: #fff;
+        transition: background 0.2s, color 0.2s;
+    }
+    .custom-paginator .page-item.active .page-link {
+        background-color: #e63946;
+        color: #fff;
+        border-color: #e63946;
+        font-weight: 700;
+        box-shadow: 0 2px 8px #e6394622;
+    }
+    .custom-paginator .page-link:hover, .custom-paginator .page-link:focus {
+        background: #e63946;
+        color: #fff;
+        border-color: #e63946;
+    }
+    .custom-paginator .page-item.disabled .page-link {
+        color: #bbb;
+        background: #fff;
+        border-color: #e63946;
     }
 </style>
 

@@ -301,35 +301,35 @@ def editProfile(request):
 
 def animeSearch(request):
     
-    if request.GET:
-        anime_search = request.GET['name']
-        animes = Anime.objects.filter(name__icontains = anime_search)
-    else:
-        animes = Anime.objects.all()
-    
-    context = {'animes': animes}
+    from django.core.paginator import Paginator
+    anime_search = request.GET.get('name', '')
+    anime_list = Anime.objects.filter(name__icontains=anime_search) if anime_search else Anime.objects.all()
+    paginator = Paginator(anime_list, 20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'animes': page_obj, 'anime_search': anime_search}
     return render(request, 'animeList.html', context)
 
 def mangaSearch(request):
     
-    if request.GET:
-        manga_search = request.GET['name']
-        mangas = Manga.objects.filter(name__icontains = manga_search)
-    else:
-        mangas = Manga.objects.all()
-    
-    context = {'mangas': mangas}
+    from django.core.paginator import Paginator
+    manga_search = request.GET.get('name', '')
+    manga_list = Manga.objects.filter(name__icontains=manga_search) if manga_search else Manga.objects.all()
+    paginator = Paginator(manga_list, 20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'mangas': page_obj, 'manga_search': manga_search}
     return render(request, 'mangaList.html', context)
 
 def studioSearch(request):
     
-    if request.GET:
-        studio_search = request.GET['name']
-        studios = Studios.objects.filter(name__icontains = studio_search)
-    else:
-        studios = Studios.objects.all()
-    
-    context = {'studios': studios}
+    from django.core.paginator import Paginator
+    studio_search = request.GET.get('name', '')
+    studio_list = Studios.objects.filter(name__icontains=studio_search) if studio_search else Studios.objects.all()
+    paginator = Paginator(studio_list, 20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'studios': page_obj, 'studio_search': studio_search}
     return render(request, 'studiosList.html', context)
 
 def noticePost(request):

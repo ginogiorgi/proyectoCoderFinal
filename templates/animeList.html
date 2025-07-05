@@ -14,6 +14,7 @@
                             placeholder="Buscar"
                             aria-label="Buscar"
                             name="name"
+                            value="{{ anime_search|default:'' }}"
                             style="border-radius: 8px 0 0 8px; font-size: 1.08em; background: #f8fafc; color: #1d3557; font-weight: 500;"
                             autocomplete="off"
                         />
@@ -84,6 +85,39 @@
                         </div>
                     {% endfor %}
                 </div>
+                <!-- PAGINACIÓN -->
+                {% if animes.has_other_pages %}
+                <nav aria-label="Paginación" class="mt-4">
+                  <ul class="pagination justify-content-center custom-paginator">
+                    {% if animes.has_previous %}
+                      <li class="page-item">
+                        <a class="page-link" href="?name={{ anime_search }}&page={{ animes.previous_page_number }}" aria-label="Anterior">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                    {% else %}
+                      <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                    {% endif %}
+                    {% for num in animes.paginator.page_range %}
+                      {% if animes.number == num %}
+                        <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                      {% elif num > animes.number|add:'-3' and num < animes.number|add:'3' %}
+                        <li class="page-item"><a class="page-link" href="?name={{ anime_search }}&page={{ num }}">{{ num }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                    {% if animes.has_next %}
+                      <li class="page-item">
+                        <a class="page-link" href="?name={{ anime_search }}&page={{ animes.next_page_number }}" aria-label="Siguiente">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    {% else %}
+                      <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                    {% endif %}
+                  </ul>
+                </nav>
+                {% endif %}
+                <!-- FIN PAGINACIÓN -->
             </div>
         </div>
     </div>
@@ -106,6 +140,30 @@
       max-height: 350px !important;
     }
   }
+  .custom-paginator .page-link {
+    color: #e63946;
+    border-color: #e63946;
+    font-weight: 500;
+    background: #fff;
+    transition: background 0.2s, color 0.2s;
+  }
+  .custom-paginator .page-item.active .page-link {
+    background-color: #e63946;
+    color: #fff;
+    border-color: #e63946;
+    font-weight: 700;
+    box-shadow: 0 2px 8px #e6394622;
+  }
+  .custom-paginator .page-link:hover, .custom-paginator .page-link:focus {
+    background: #e63946;
+    color: #fff;
+    border-color: #e63946;
+  }
+  .custom-paginator .page-item.disabled .page-link {
+    color: #bbb;
+    background: #fff;
+    border-color: #e63946;
+  }
 </style>
 
-{% endblock%}
+{% endblock %}
