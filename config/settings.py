@@ -12,9 +12,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6jspc+k@yl-qj(c=8-r_j0-z%y)-4kz3p)$g7wore*q0ju2-8_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+# Cambia a False en producción
+DEBUG = False
+
+# Agrega el dominio de Render y localhost para pruebas
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.onrender.com',  # permite cualquier subdominio de Render
+]
 
 
 # Application definition
@@ -103,15 +110,20 @@ USE_I18N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
 
-# Agrega esta línea para que Django encuentre los archivos estáticos en desarrollo
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'core/static'),
-]
+# Carpeta donde collectstatic pondrá los archivos para producción
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Solo usar STATICFILES_DIRS en desarrollo
+if DEBUG:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'core/static'),
+    ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
