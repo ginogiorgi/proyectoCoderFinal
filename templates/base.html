@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
     <body style="background-color:rgb(226, 206, 206)">
+        {% block sidebar %}
         <nav class="sidebar close">
             <div class="logo-details">
                 <a href="{% url 'Home' %}" style="display: flex; align-items: center; text-decoration: none;">
@@ -111,8 +112,10 @@
                 {% endif %}
             </ul>
         </nav>
+        {% endblock %}
         <div class="home-section" style="background-color:rgb(226, 206, 206)">
             <div class="home-content" style="background-color:white">
+            {% block navbar %}
             <i id="sidebar-toggle" class='bx bx-menu' style="color: #e63946; font-size: 2rem; cursor:default;" tabindex="-1"></i>
             <a href="{% url 'Home' %}" style="text-decoration: none;">
                 <span class="text" style="
@@ -126,6 +129,7 @@
                     Geek <span style="color: #e63946;">Zone</span>
                 </span>
             </a>
+            {% endblock %}
             </div>
             {% block container %}
             <div class="container border-0 shadow-lg" style="background-color:white">

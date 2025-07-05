@@ -1,31 +1,53 @@
 {% extends "base.html" %}
 {% load static %}
-{% block container%}
-    <div class="position-absolute top-50 start-50 translate-middle">
-        <div class="container border rounded shadow-lg" style="background-color:white">
-            <div class="row">
-                <p class="text-center fs-2">INICIAR SESION</b></p>
+{% block navbar %}{% endblock %}
+{% block sidebar %}{% endblock %}
+{% block container %}
+<style>
+  .home-content { display: none !important; }
+</style>
+<div style="position: fixed; inset: 0; min-height: 100vh; min-width: 100vw; background: rgb(226, 206, 206); display: flex; align-items: center; justify-content: center; overflow: hidden; z-index: 1000;">
+    <div class="login-card shadow-lg p-4 rounded-4" style="background: white; max-width: 370px; width: 100%; border: none; margin: 0 auto;">
+        <div class="text-center mb-3">
+            <h2 class="fw-bold mb-2" style="color: #e63946; letter-spacing: 1px;">Iniciar Sesión</h2>
+        </div>
+        <form method="POST" autocomplete="off">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label fw-semibold" style="color: #1d3557;">Usuario</label>
+                {{ form.username }}
             </div>
-            <div class="row justify-content-evenly">
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-3 ">
-                    <div class="text-center">
-                        <form method="POST">{% csrf_token %}
-                            <div class="mb-3 py-3">
-                                {{form.username}}
-                            </div>
-                            <div class="mb-3 py-3">
-                                {{form.password}}
-                            </div>
-                            <button type="submit" class="btn btn-secondary">Iniciar Sesion</button>
-                        </form>
-                        {% if message %}
-                            <p><br>{{message}}</p>
-                        {% endif %}
-                        <br>
-                        <a href="{% url 'Register' %}">Sign up to GeekZone</a>
-                    </div>
-                </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold" style="color: #1d3557;">Contraseña</label>
+                {{ form.password }}
             </div>
+            {% if message %}
+                <div class="alert alert-danger py-2 px-3 mb-2" role="alert">{{ message }}</div>
+            {% endif %}
+            <button type="submit" class="btn w-100 fw-bold" style="background-color: #e63946; color: white; border-radius: 8px; font-size: 1.08em;">Iniciar Sesión</button>
+        </form>
+        <div class="text-center mt-3">
+            <span class="text-muted">¿No tenés cuenta?</span>
+            <a href="{% url 'Register' %}" class="fw-semibold" style="color: #e63946; text-decoration: none;">Registrate en GeekZone</a>
         </div>
     </div>
+</div>
+<style>
+    .login-card input[type="text"],
+    .login-card input[type="password"] {
+        border-radius: 8px;
+        background: #f8fafc;
+        color: #1d3557;
+        font-weight: 500;
+        border: 1px solid #dee2e6;
+        font-size: 1.08em;
+        padding: 0.7em 1em;
+    }
+    .login-card input[type="text"]:focus,
+    .login-card input[type="password"]:focus {
+        border-color: #e63946;
+        box-shadow: 0 0 0 0.15rem rgba(230,57,70,.15);
+        outline: none;
+    }
+</style>
 {% endblock %}
