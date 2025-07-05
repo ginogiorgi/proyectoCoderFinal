@@ -1,32 +1,51 @@
 {% extends "base.html" %} {% load static %} {% block container %}
-<div class="container border-0 shadow-lg" style="background-color: white">
-    <div class="row">
-        <div class="container">
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-5">
+<div class="container py-5" style="background: white; min-height: 80vh;">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="row g-4 justify-content-center">
                 {% for user in users %}
-                <div class="card" style="width: 18rem">
-                    <img
-                        src="{{ user.profile.image.url }}"
-                        class="card-img-top"
-                        alt="..."
-                    />
-                    <div class="card-body">
-                        <h5 class="card-title text-center">{{ user }}</h5>
-                        <p class="card-text text-center">
-                            {{ user.first_name }} {{ user.last_name }}
-                        </p>
-                        <a
-                            href="{% url 'Profile' user %}"
-                            class="btn btn-secondary"
-                            >Perfil</a
-                        >
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
+                    <div class="card shadow-lg border-0 rounded-4 w-100 d-flex flex-column align-items-center p-3" style="background: white; min-height: 340px;">
+                        <div class="profile-img-wrapper position-relative mb-2 mx-auto" style="width: 110px; height: 110px;">
+                            <img
+                                src="{{ user.profile.image.url }}"
+                                class="rounded-circle border border-3 border-danger shadow"
+                                style="width: 110px; height: 110px; object-fit: cover; background: #f8fafc;"
+                                alt="Avatar"
+                            />
+                        </div>
+                        <h5 class="fw-bold text-center mb-1" style="color: #e63946; font-size: 1.18rem;">{{ user.username }}</h5>
+                        <p class="text-center text-muted mb-2" style="font-size: 1.05em;">{{ user.first_name }} {{ user.last_name }}</p>
+                        <div class="mt-auto w-100">
+                            <a href="{% url 'Profile' user %}" class="btn fw-bold w-100" style="background-color: #e63946; color: white; border-radius: 8px; font-size: 1.05em;">Perfil</a>
+                        </div>
                     </div>
                 </div>
-
+                {% empty %}
+                <div class="col-12">
+                    <div class="alert alert-warning text-center mt-4" role="alert">
+                        No se encontraron usuarios con ese nombre.
+                    </div>
+                </div>
                 {% endfor %}
             </div>
         </div>
     </div>
 </div>
-
-{% endblock%}
+<style>
+    .profile-img-wrapper {
+        width: 110px;
+        height: 110px;
+        margin: 0 auto;
+    }
+    @media (max-width: 575.98px) {
+        .profile-img-wrapper {
+            width: 80px;
+            height: 80px;
+        }
+        .card h5 {
+            font-size: 1.05rem;
+        }
+    }
+</style>
+{% endblock %}
