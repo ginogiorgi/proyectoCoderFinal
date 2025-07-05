@@ -1,37 +1,40 @@
-{% extends "base.html" %} {% load static %} {% block container %}
-<div class="container border-0 shadow-lg" style="background-color: white">
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-2 col-xl-1 py-3"></div>
-        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-10 py-3">
-            <img
-                src="{{ notice.image.url }}"
-                class="img-fluid text-center"
-                style="max-height: 1000"
-            />
-        </div>
-        <div class="col-sm-12 col-md-12 col-lg-2 col-xl-1 py-3"></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-3">
-            <h1 class="text-center">{{notice.title}}</h1>
-            <br />
-            <p class="lg-center fs-4">{{notice.content}}</p>
-            <p class="text-end fw-bold">
-                Subido por: {{notice.user}}
-                <img
-                    style="max-width: px; max-height: 50px"
-                    src="{{notice.user.profile.image.url}}"
-                />
-            </p>
-            {% if request.user.is_superuser %}
-            <a href=""
-                ><button type="button" class="btn btn-secondary end">
-                    Eliminar Noticia
-                </button></a
-            >
-            {% endif%}
+{% extends "base.html" %}
+{% load static %}
+{% block container %}
+<div class="w-100 d-flex justify-content-center align-items-center" style="min-height: 90vh; padding: 0; margin: 0; background: none;">
+    <div class="card shadow-lg border-0 rounded-4 p-4 w-100" style="background: white; max-width: 980px; margin: 18px 6px;">
+                <h2 class="fw-bold text-center mb-4" style="color: #e63946; font-size: 2.5rem; letter-spacing: 0.5px;">{{ notice.title }}</h2>
+                <div class="text-center mb-4">
+                    <img
+                        src="{{ notice.image.url }}"
+                        class="img-fluid rounded-3 shadow-sm"
+                        style="max-width: 700px; max-height: 420px; object-fit: cover; margin: 0 auto; background: #f8fafc;"
+                        alt="Imagen de la noticia"
+                    />
+                </div>
+                <p class="fs-5 text-center mb-5" style="color: #1d3557;">{{ notice.content }}</p>
+                <div class="row mt-4">
+                    <div class="col-6 d-flex align-items-end">
+                        {% if request.user.is_superuser %}
+                        <a href="" class="me-2">
+                            <button type="button" class="btn btn-secondary">
+                                Eliminar Noticia
+                            </button>
+                        </a>
+                        {% endif %}
+                    </div>
+                    <div class="col-6 d-flex justify-content-end align-items-end">
+                        <span class="fw-semibold text-muted me-2">Subido por: {{ notice.user }}</span>
+                        <img
+                            src="{{ notice.user.profile.image.url }}"
+                            class="rounded-circle border border-2 border-danger shadow"
+                            style="width: 38px; height: 38px; object-fit: cover; background: #f8fafc;"
+                            alt="Avatar usuario"
+                        />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
 {% endblock %}

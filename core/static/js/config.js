@@ -12,7 +12,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     let sidebar = document.querySelector(".sidebar");
     let sidebarBtn = document.getElementById("sidebar-toggle");
-    // Eliminar cualquier interacción del ícono hamburguesa
+    if (sidebarBtn && sidebar) {
+        sidebarBtn.addEventListener("click", function () {
+            sidebar.classList.toggle("close");
+        });
+    }
 });
 
 // Si usás datepicker, asegurate de que jQuery esté cargado antes de este script.
