@@ -1,43 +1,76 @@
 {% extends "base.html" %}
 {% load static %}
-{% block container%}
-    <div class="position-absolute top-50 start-50 translate-middle">
-        <div class="container border rounded shadow-lg" style="background-color:white">
-            <div class="row">
-                <p class="text-center fs-2">REGISTRAR USUARIO</b> </p>
-            </div>
-            <div class="row justify-content-evenly">
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 py-3 ">
-                    <div class="text-center">
-                        <form method="POST">{% csrf_token %}
-                            <div class="row py-3">
-                                <div class="col-md-6">           
-                                    {{form.first_name}}
-                                </div>
-                                <div class="col-md-6">
-                                    {{form.last_name}}
-                                </div>
-                            </div>
-                            <div class="mb-3 py-3">
-                                {{form.username}}
-                            </div>
-                            <div class="mb-3 py-3">
-                                {{form.email}}
-                            </div>
-                            <div class="mb-3 py-3">
-                                {{form.password1}}
-                            </div>
-                            <div class="mb-3 py-3">
-                                {{form.password2}}
-                            </div>
-                            {% if form.errors %}
-                                <p>Passwords do not match.</p>
-                            {% endif %}
-                            <button type="submit" class="btn btn-secondary">Registrar Usuario</button>
-                        </form>
-                    </div>
+{% block navbar %}{% endblock %}
+{% block sidebar %}{% endblock %}
+{% block container %}
+<style>
+  .home-content { display: none !important; }
+</style>
+<div style="position: fixed; inset: 0; min-height: 100vh; min-width: 100vw; background: rgb(226, 206, 206); display: flex; align-items: center; justify-content: center; overflow: hidden; z-index: 1000;">
+    <div class="login-card shadow-lg p-4 rounded-4" style="background: white; max-width: 400px; width: 100%; border: none; margin: 0 auto;">
+        <div class="text-center mb-3">
+            <h2 class="fw-bold mb-2" style="color: #e63946; letter-spacing: 1px;">Registrar Usuario</h2>
+        </div>
+        <form method="POST" autocomplete="off">{% csrf_token %}
+            <div class="row g-3 mb-2">
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold" style="color: #1d3557;">Nombre</label>
+                    {{ form.first_name }}
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold" style="color: #1d3557;">Apellido</label>
+                    {{ form.last_name }}
                 </div>
             </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold" style="color: #1d3557;">Usuario</label>
+                {{ form.username }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold" style="color: #1d3557;">Email</label>
+                {{ form.email }}
+            </div>
+            <div class="row g-3">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-semibold" style="color: #1d3557;">Contraseña</label>
+                    {{ form.password1 }}
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-semibold" style="color: #1d3557;">Repetir contraseña</label>
+                    {{ form.password2 }}
+                </div>
+            </div>
+            {% if form.errors %}
+                <div class="alert alert-danger py-2 px-3 mb-3" role="alert">
+                    Las contraseñas no coinciden o hay errores en el formulario.
+                </div>
+            {% endif %}
+            <button type="submit" class="btn w-100 fw-bold" style="background-color: #e63946; color: white; border-radius: 8px; font-size: 1.08em;">Registrar Usuario</button>
+        </form>
+        <div class="text-center mt-3">
+            <span class="text-muted">¿Ya tenés cuenta?</span>
+            <a href="{% url 'Login' %}" class="fw-semibold" style="color: #e63946; text-decoration: none;">Iniciar Sesión</a>
         </div>
     </div>
+</div>
+<style>
+    .login-card input[type="text"],
+    .login-card input[type="password"],
+    .login-card input[type="email"] {
+        border-radius: 8px;
+        background: #f8fafc;
+        color: #1d3557;
+        font-weight: 500;
+        border: 1px solid #dee2e6;
+        font-size: 1.08em;
+        padding: 0.7em 1em;
+    }
+    .login-card input[type="text"]:focus,
+    .login-card input[type="password"]:focus,
+    .login-card input[type="email"]:focus {
+        border-color: #e63946;
+        box-shadow: 0 0 0 0.15rem rgba(230,57,70,.15);
+        outline: none;
+    }
+</style>
 {% endblock %}
