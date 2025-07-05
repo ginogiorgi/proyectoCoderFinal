@@ -87,13 +87,15 @@
                 <li>
                     <div class="profile-details">
                         <div class="profile-content">
-                            <img src="{{ request.user.profile.image.url }}" alt="profileImg">
+                            <a href="{% url 'Profile' request.user %}" id="sidebar-profile-img-link">
+                                <img src="{{ request.user.profile.image.url }}" alt="profileImg" style="cursor:pointer;">
+                            </a>
                         </div>
                         <div class="name-job">
                             <a href="{% url 'Profile' request.user %}" class="profile_name">{{request.user}}</a>
                             <div class="job"> </div>
                         </div>
-                            <a href="{% url 'Logout' %}"><i  class='bx bx-log-out' > </i> </a>
+                        <a href="{% url 'Logout' %}"><i  class='bx bx-log-out' > </i> </a>
                     </div>
                 </li>
                 {% else %}

@@ -1,77 +1,99 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends 'base.html' %}
+
+{% block title %}Editar Perfil{% endblock %}
+
 {% block container %}
-<div class="container border-0 shadow-lg mt-4 mb-5" style="background-color: white; border-radius: 18px; max-width: 900px;">
-    <div class="row justify-content-center align-items-center py-4">
-        <div class="col-12 col-md-4 d-flex flex-column align-items-center mb-4 mb-md-0">
-            <div class="profile-img-wrapper position-relative mb-3">
-                <img
-                    src="{{ request.user.profile.image.url }}"
-                    class="rounded-circle border border-3 border-danger shadow"
-                    style="width: 140px; height: 140px; object-fit: cover; background: #f8fafc;"
-                    alt="Avatar"
-                />
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7 col-md-9">
+            <div class="card shadow-lg border-0 rounded-4 p-4">
+                <div class="text-center mb-3">
+                    <div class="profile-img-wrapper position-relative mb-2 mx-auto">
+                        <img
+                            src="{{ request.user.profile.image.url }}"
+                            class="rounded-circle border border-3 border-danger shadow"
+                            style="width: 110px; height: 110px; object-fit: cover; background: #f8fafc;"
+                            alt="Avatar"
+                        />
+                    </div>
+                    <h4 class="fw-bold text-center mb-0" style="color: #e63946;">{{ request.user.username }}</h4>
+                    <p class="text-muted text-center mb-2" style="font-size: 1.05em;">{{ request.user.email }}</p>
+                </div>
+                <form method="POST" enctype="multipart/form-data" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="row g-3 mb-2">
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold" style="color: #1d3557;">Nombre</label>
+                            {{ u_form.first_name }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold" style="color: #1d3557;">Apellido</label>
+                            {{ u_form.last_name }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="color: #1d3557;">Usuario</label>
+                        {{ u_form.username }}
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold" style="color: #1d3557;">Nueva contraseña</label>
+                            {{ u_form.password1 }}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold" style="color: #1d3557;">Repetir contraseña</label>
+                            {{ u_form.password2 }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="color: #1d3557;">Biografía</label>
+                        {{ p_form.bio }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="color: #1d3557;">Imagen de perfil</label>
+                        {{ p_form.image }}
+                    </div>
+                    {% if form.errors %}
+                    <div class="alert alert-danger py-2 px-3 mb-3" role="alert">
+                        Las contraseñas no coinciden o hay errores en el formulario.
+                    </div>
+                    {% endif %}
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn w-100 fw-bold" style="background-color: #e63946; color: white; border-radius: 8px; font-size: 1.08em;">
+                            Guardar Cambios
+                        </button>
+                    </div>
+                </form>
             </div>
-            <h4 class="fw-bold text-center" style="color: #e63946;">{{ request.user.username }}</h4>
-            <p class="text-muted text-center mb-0" style="font-size: 1.05em;">{{ request.user.email }}</p>
-        </div>
-        <div class="col-12 col-md-8">
-            <form method="POST" enctype="multipart/form-data" class="p-3 rounded-4" style="background: #f8fafc; box-shadow: 0 2px 12px 0 rgba(0,0,0,0.04);">
-                {% csrf_token %}
-                <div class="row g-3 mb-2">
-                    <div class="col-md-6">
-                        <label class="form-label fw-semibold" style="color: #1d3557;">Nombre</label>
-                        {{ u_form.first_name }}
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label fw-semibold" style="color: #1d3557;">Apellido</label>
-                        {{ u_form.last_name }}
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label fw-semibold" style="color: #1d3557;">Usuario</label>
-                    {{ u_form.username }}
-                </div>
-                <div class="row g-3">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label fw-semibold" style="color: #1d3557;">Nueva contraseña</label>
-                        {{ u_form.password1 }}
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label fw-semibold" style="color: #1d3557;">Repetir contraseña</label>
-                        {{ u_form.password2 }}
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label fw-semibold" style="color: #1d3557;">Biografía</label>
-                    {{ p_form.bio }}
-                </div>
-                <div class="mb-3">
-                    <label class="form-label fw-semibold" style="color: #1d3557;">Imagen de perfil</label>
-                    {{ p_form.image }}
-                </div>
-                {% if form.errors %}
-                <div class="alert alert-danger py-2 px-3 mb-3" role="alert">
-                    Las contraseñas no coinciden o hay errores en el formulario.
-                </div>
-                {% endif %}
-                <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-lg px-4 fw-bold" style="background-color: #e63946; color: white; border: none; border-radius: 8px;">
-                        Guardar Cambios
-                    </button>
-                </div>
-            </form>
         </div>
     </div>
 </div>
 <style>
     .profile-img-wrapper {
-        width: 140px;
-        height: 140px;
+        width: 110px;
+        height: 110px;
         margin: 0 auto;
     }
     .form-label {
         margin-bottom: 0.3rem;
+    }
+    .card input[type="text"],
+    .card input[type="password"],
+    .card input[type="email"] {
+        border-radius: 8px;
+        background: #f8fafc;
+        color: #1d3557;
+        font-weight: 500;
+        border: 1px solid #dee2e6;
+        font-size: 1.08em;
+        padding: 0.7em 1em;
+    }
+    .card input[type="text"]:focus,
+    .card input[type="password"]:focus,
+    .card input[type="email"]:focus {
+        border-color: #e63946;
+        box-shadow: 0 0 0 0.15rem rgba(230,57,70,.15);
+        outline: none;
     }
 </style>
 {% endblock %}
