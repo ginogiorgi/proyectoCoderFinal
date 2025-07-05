@@ -1,34 +1,77 @@
-{% extends "base.html" %} {% load static %} {% block container%}
-<div class="container border-0 shadow-lg" style="background-color: white">
-    <div class="row justify-content-evenly">
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4 py-4">
-            <div class="text-center">
+{% extends "base.html" %}
+{% load static %}
+{% block container %}
+<div class="container border-0 shadow-lg mt-4 mb-5" style="background-color: white; border-radius: 18px; max-width: 900px;">
+    <div class="row justify-content-center align-items-center py-4">
+        <div class="col-12 col-md-4 d-flex flex-column align-items-center mb-4 mb-md-0">
+            <div class="profile-img-wrapper position-relative mb-3">
                 <img
                     src="{{ request.user.profile.image.url }}"
-                    class="img-thumbnail"
+                    class="rounded-circle border border-3 border-danger shadow"
+                    style="width: 140px; height: 140px; object-fit: cover; background: #f8fafc;"
+                    alt="Avatar"
                 />
             </div>
+            <h4 class="fw-bold text-center" style="color: #e63946;">{{ request.user.username }}</h4>
+            <p class="text-muted text-center mb-0" style="font-size: 1.05em;">{{ request.user.email }}</p>
         </div>
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 py-3">
-            <form method="POST" enctype="multipart/form-data">
+        <div class="col-12 col-md-8">
+            <form method="POST" enctype="multipart/form-data" class="p-3 rounded-4" style="background: #f8fafc; box-shadow: 0 2px 12px 0 rgba(0,0,0,0.04);">
                 {% csrf_token %}
-                <div class="row py-3">
-                    <div class="col-md-6">{{u_form.first_name}}</div>
-                    <div class="col-md-6">{{u_form.last_name}}</div>
+                <div class="row g-3 mb-2">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold" style="color: #1d3557;">Nombre</label>
+                        {{ u_form.first_name }}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold" style="color: #1d3557;">Apellido</label>
+                        {{ u_form.last_name }}
+                    </div>
                 </div>
-                <div class="mb-3 py-3">{{u_form.username}}</div>
-                <div class="mb-3 py-3">{{u_form.password1}}</div>
-                <div class="mb-3 py-3">{{u_form.password2}}</div>
-                <div class="mb-3 py-3">{{p_form.bio}}</div>
-                <div class="mb-3 py-3">{{p_form.image}}</div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold" style="color: #1d3557;">Usuario</label>
+                    {{ u_form.username }}
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-semibold" style="color: #1d3557;">Nueva contraseña</label>
+                        {{ u_form.password1 }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-semibold" style="color: #1d3557;">Repetir contraseña</label>
+                        {{ u_form.password2 }}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold" style="color: #1d3557;">Biografía</label>
+                    {{ p_form.bio }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold" style="color: #1d3557;">Imagen de perfil</label>
+                    {{ p_form.image }}
+                </div>
                 {% if form.errors %}
-                <p>Passwords do not match.</p>
+                <div class="alert alert-danger py-2 px-3 mb-3" role="alert">
+                    Las contraseñas no coinciden o hay errores en el formulario.
+                </div>
                 {% endif %}
-                <button type="submit" class="btn btn-secondary">
-                    Registrar Cambios
-                </button>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-lg px-4 fw-bold" style="background-color: #e63946; color: white; border: none; border-radius: 8px;">
+                        Guardar Cambios
+                    </button>
+                </div>
             </form>
         </div>
     </div>
 </div>
+<style>
+    .profile-img-wrapper {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto;
+    }
+    .form-label {
+        margin-bottom: 0.3rem;
+    }
+</style>
 {% endblock %}
