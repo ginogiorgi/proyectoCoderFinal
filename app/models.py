@@ -6,7 +6,7 @@ import datetime
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     bio = models.CharField(default = 'Bienvenido', max_length = 120)
-    image = models.ImageField(default = 'default.png')
+    image = models.ImageField(default = 'logo2.png')
     
     def __str__(self):
         return f'Nombre: {self.user.first_name} -- Apellido: {self.user.last_name} -- Usuario: {self.user.username} -- '

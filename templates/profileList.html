@@ -16,6 +16,7 @@
                         </div>
                         <h5 class="fw-bold text-center mb-1" style="color: #e63946; font-size: 1.18rem;">{{ user.username }}</h5>
                         <p class="text-center text-muted mb-2" style="font-size: 1.05em;">{{ user.first_name }} {{ user.last_name }}</p>
+                        <p class="text-center text-secondary mb-2" style="font-size: 0.98em; min-height: 2.2em;">{{ user.profile.bio }}</p>
                         <div class="mt-auto w-100">
                             <a href="{% url 'Profile' user %}" class="btn fw-bold w-100" style="background-color: #e63946; color: white; border-radius: 8px; font-size: 1.05em;">Perfil</a>
                         </div>
