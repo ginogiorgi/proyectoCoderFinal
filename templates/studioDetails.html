@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% block container %}
+<div class="container border-0 shadow-lg" style="background: white;">
+    <div class="row justify-content-evenly">
+        <div class="col-sm-12 col-md-12 col-lg-4 py-4">
+            <div class="text-center">
+                <img
+                    src="{{ studio.image.url }}"
+                    class="img-thumbnail"
+                    alt="{{ studio.name }}"
+                    style="max-height: 340px; background: #f8fafc; border-radius: 18px;"
+                />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-8 py-3">
+            <h2 class="section-title text-start" style="margin-bottom: 18px;">{{ studio.name }}</h2>
+            <div class="p-0 m-0" style="margin-left: 0 !important; padding-left: 0 !important; width: 100%;">
+                <ul class="list-group list-group-flush p-0 m-0" style="margin-left: 0 !important; padding-left: 0 !important;">
+                    <li class="list-group-item py-2" style="padding-left: 0 !important; padding-right: 0 !important;">
+                        <strong>Fundado:</strong> {{ studio.fundation_date|date:"j \\d\\e F \\d\\e Y" }}
+                    </li>
+                    <li class="list-group-item py-2" style="padding-left: 0 !important; padding-right: 0 !important;">
+                        <strong>Animes creados:</strong>
+                        {% if animes %}
+                            <div class="row" style="margin: 0;">
+                                {% for anime in animes %}
+                                    <div class="col-12 col-md-6" style="padding-left: 0;">
+                                        <span style="color: #111; font-weight: bold; font-size: 1.1em; margin-right: 6px;">•</span>
+                                        <a href="{% url 'Anime Details' anime.id %}" style="color: #111; text-decoration: underline; text-decoration-color: #111; font-weight: 500; display: inline; padding: 2px 0;">
+                                            {{ anime.name }}
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <span style="color: #888;">No disponible</span>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+            <div class="mt-3">
+                <h5 style="color: #e63946; font-weight: 700; font-size: 1.18rem; position: relative; margin-bottom: 0.7em;">
+                    Descripción
+                    <span style="display: block; position: absolute; left: 0; bottom: -2px; width: 100%; height: 5px; background: linear-gradient(90deg, #e9ecef 80%, #f1faee 100%); border-radius: 2px; z-index: 0;"></span>
+                </h5>
+                <p style="position: relative; z-index: 1;">
+                    {{ studio.description|default:"Sin descripción." }}
+                </p>
+            </div>
+            <a href="{% url 'Studios Search' %}" class="btn mt-3" style="background-color: #e63946; color: white; border: none; font-weight: 600;">
+                Volver a la lista
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

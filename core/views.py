@@ -366,3 +366,13 @@ def createNotice(request):
 
 def aboutus(request):
     return render(request, 'aboutus.html')
+
+def studioDetails(request, id_studio):
+    try:
+        studio = Studios.objects.get(id=id_studio)
+    except Studios.DoesNotExist:
+        messages.error(request, 'El estudio no existe.')
+        return redirect('Studios Search')
+    animes = Anime.objects.filter(studio=studio)
+    context = {'studio': studio, 'animes': animes}
+    return render(request, 'studioDetails.html', context)

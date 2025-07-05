@@ -29,7 +29,7 @@
                     <h5 class="fw-bold mb-2 text-truncate-2" style="color: #e63946; font-size: 1.18rem; min-height: 2.5em; line-height: 1.3; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical;">{{ studio.name }}</h5>
                     <p class="mb-2 text-muted" style="font-size: 1.05rem;">Fundado: {{ studio.fundation_date }}</p>
                     <div class="mt-auto">
-                        <a href="" class="btn fw-bold w-100" style="background-color: #e63946; color: white; border-radius: 8px; font-size: 1.05em;">
+                        <a href="{% url 'Studio Details' studio.id %}" class="btn fw-bold w-100" style="background-color: #e63946; color: white; border-radius: 8px; font-size: 1.05em;">
                             Detalles
                         </a>
                     </div>

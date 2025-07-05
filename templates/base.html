@@ -29,28 +29,28 @@
                     <div class="iocn-link">
                       <a href="{% url 'Home' %}">
                         <i class='bx bx-grid-alt'></i>
-                        <span class="link_name">Home</span>
+                        <span class="link_name">Inicio</span>
                       </a>
                       <i class='bx bxs-chevron-down arrow' ></i>
                     </div>
                     <ul class="sub-menu">
-                        <li><a class="link_name" href="{% url 'Home' %}">Home</a></li>
-                        <li><a href="{% url 'About Us' %}">About Us</a></li>
+                        <li><a class="link_name" href="{% url 'Home' %}">Inicio</a></li>
+                        <li><a href="{% url 'About Us' %}">Sobre Nosotros</a></li>
                     </ul>
                 </li>
                 <li>
                     <div class="iocn-link">
                     <a href="#">
                         <i class='bx bx-collection' ></i>
-                        <span class="link_name">Category</span>
+                        <span class="link_name">Categorías</span>
                     </a>
                     <i class='bx bxs-chevron-down arrow' ></i>
                     </div>
                     <ul class="sub-menu">
-                        <li><a class="link_name" href="#">Category</a></li>
+                        <li><a class="link_name" href="#">Categorías</a></li>
                         <li><a href="{% url 'Anime Search' %}">Anime</a></li>
                         <li><a href="{% url 'Manga Search' %}">Manga</a></li>
-                        <li><a href="{% url 'Studios Search' %}">Studios</a></li>
+                        <li><a href="{% url 'Studios Search' %}">Estudios</a></li>
                     </ul>
                 </li>
                 <li>
@@ -106,18 +106,59 @@
                 <li>
                   <div class="profile-details">
                       <div class="profile-content">
-                        
+                        <!-- vacío para mantener el espacio del avatar -->
                       </div>
                       <div class="name-job">
-                          <a href="{% url 'Login' %}" class="profile_name">Login</a>
+                          <a href="{% url 'Login' %}" class="profile_name" style="margin-left: 60px;">Iniciar Sesión</a>
                           <div class="job"> </div>
                       </div>
                           <i href="" class='' > </i>
                   </div>
                 </li>
+                <!-- Botón login flotante para sidebar cerrada -->
+                <li>
+                  <a href="{% url 'Login' %}" class="sidebar-login-closed-btn d-flex align-items-center justify-content-center">
+                    <i class='bx bx-log-in' style="font-size: 2rem;"></i>
+                  </a>
+                </li>
                 {% endif %}
             </ul>
         </nav>
+        <style>
+        /* Botón login flotante solo visible cuando sidebar está cerrada y usuario no autenticado */
+        .sidebar-login-closed-btn {
+          display: none;
+          position: fixed;
+          left: 18px;
+          bottom: 12px;
+          z-index: 1200;
+          background: none;
+          color: #e63946 !important;
+          border-radius: 50%;
+          width: 48px;
+          height: 48px;
+          box-shadow: none;
+          justify-content: center;
+          align-items: center;
+          transition: color 0.2s;
+        }
+        .sidebar.close .sidebar-login-closed-btn {
+          display: flex !important;
+        }
+        .sidebar-login-closed-btn:hover, .sidebar-login-closed-btn:focus {
+          color: #b71c1c;
+          background: none;
+        }
+        @media (max-width: 400px) {
+          .sidebar-login-closed-btn {
+            left: 8px;
+            bottom: 8px;
+            width: 40px;
+            height: 40px;
+            font-size: 1.3rem;
+          }
+        }
+        </style>
         {% endblock %}
         <div class="home-section" style="background-color:rgb(226, 206, 206)">
             <div class="home-content" style="background-color:white">

@@ -3,6 +3,11 @@
 {% block navbar %}{% endblock %}
 {% block sidebar %}{% endblock %}
 {% block container %}
+<div style="position: fixed; top: 8px; left: 8px; z-index: 2000;">
+  <a href="{% url 'Home' %}" title="Ir al inicio" aria-label="Ir al inicio" style="display: flex; align-items: center; justify-content: center; width: 92px; height: 92px; background: #11101D; border-radius: 50%; box-shadow: 0 4px 18px #0002; border: 2.5px solid #fff;">
+    <img src="{% static 'img/logo2.png' %}" alt="Logo GeekZone" style="height: 68px; width: 68px; display: block;">
+  </a>
+</div>
 <style>
   .home-content { display: none !important; }
 </style>

@@ -64,7 +64,7 @@
                             padding-right: 0 !important;
                         "
                     >
-                        <strong>Estudio:</strong> {{ anime.studio }}
+                        <strong>Estudio:</strong> <a href="{% url 'Studio Details' anime.studio.id %}" style="color: #111; text-decoration: underline; text-decoration-color: #111; font-weight: 500;">{{ anime.studio }}</a>
                     </li>
                     <li
                         class="list-group-item py-2"

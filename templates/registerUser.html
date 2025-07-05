@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+<div style="position: absolute; top: 18px; left: 18px; z-index: 1100;">
+  <a href="{% url 'Home' %}" title="Ir al inicio" aria-label="Ir al inicio">
+    <img src="{% static 'img/logo2.png' %}" alt="Logo GeekZone" style="height: 44px; width: 44px; display: block;">
+  </a>
+</div>
 {% block navbar %}{% endblock %}
 {% block sidebar %}{% endblock %}
 {% block container %}

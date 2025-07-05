@@ -40,7 +40,8 @@ urlpatterns = [
     path('noticesHome/', noticePost, name = 'Notices'),
     path('noticeDetail/<int:id_notice>/', noticeDetail, name = 'Notice Details'),
     path('createNotice/', createNotice, name = 'New Notice'),
-    path('aboutus/', aboutus, name = 'About Us')
+    path('aboutus/', aboutus, name = 'About Us'),
+    path('studioDetails/<int:id_studio>/', studioDetails, name = 'Studio Details')
 ]
 
 if settings.DEBUG:
