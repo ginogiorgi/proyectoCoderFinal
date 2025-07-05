@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>{% block title %}GeekZone{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/table.css' %}">
     <link rel="stylesheet" type ="text/css" href="{% static 'css/styles.css' %}">
@@ -16,9 +17,9 @@
         {% block sidebar %}
         <nav class="sidebar close">
             <div class="logo-details">
-                <a href="{% url 'Home' %}" style="display: flex; align-items: center; text-decoration: none;">
+                <a href="{% url 'Home' %}" style="display: flex; align-items: center; text-decoration: none;" title="Ir al inicio" aria-label="Ir al inicio">
                     <i class='' style="display: flex; align-items: center; height: 48px; width: 48px;">
-                        <img src="{% static 'img/logo2.png' %}" style="max-height: 48px; max-width: 48px; display: block; margin: 0 auto;">
+                        <img src="{% static 'img/logo2.png' %}" alt="Logo GeekZone" title="GeekZone" style="max-height: 48px; max-width: 48px; display: block; margin: 0 auto;">
                     </i>
                 </a>
                 <span class="logo_name" style="font-size: 1.3rem; font-weight: 700; color: #1d3557;">GeekZone</span>
@@ -95,7 +96,10 @@
                             <a href="{% url 'Profile' request.user %}" class="profile_name">{{request.user}}</a>
                             <div class="job"> </div>
                         </div>
-                        <a href="{% url 'Logout' %}"><i  class='bx bx-log-out' > </i> </a>
+                        <a href="{% url 'Logout' %}" title="Cerrar sesión" aria-label="Cerrar sesión">
+                          <i class='bx bx-log-out'></i>
+                          <span class="visually-hidden">Cerrar sesión</span>
+                        </a>
                     </div>
                 </li>
                 {% else %}
@@ -195,11 +199,11 @@
                           {% for manga in mangas %}
                             <div class="col">
                               <div class="card h-100" style="display: flex; flex-direction: column; min-height: 370px;">
-                                <a href="{% url 'Manga Details' manga.id %}">
-                                  <img src="{{ manga.image.url }}" class="card-img-top object-fit-cover" alt="" style="height: 230px; object-fit: cover; border-radius: 8px 8px 0 0;">
+                                <a href="{% url 'Manga Details' manga.id %}" title="Ver detalles de {{ manga.name }}" aria-label="Ver detalles de {{ manga.name }}">
+                                  <img src="{{ manga.image.url }}" class="card-img-top object-fit-cover" alt="Portada de {{ manga.name }}" style="height: 230px; object-fit: cover; border-radius: 8px 8px 0 0;">
                                 </a>
                                 <div class="card-body d-flex flex-column" style="flex: 1 1 auto; padding: 0.35rem 0.7rem 0.3rem 0.7rem;">
-                                  <a href="{% url 'Manga Details' manga.id %}" style="text-decoration: none;">
+                                  <a href="{% url 'Manga Details' manga.id %}" style="text-decoration: none;" title="Ver detalles de {{ manga.name }}" aria-label="Ver detalles de {{ manga.name }}">
                                     <h5 class="card-title text-truncate-multiline anime-manga-title" style="font-size: 1.08rem; min-height: 2.6em; max-height: 2.6em; line-height: 1.3em; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-clamp: 2;">{{ manga.name }}</h5>
                                   </a>
                                   <p class="card-text text-truncate-multiline" style="font-size: 0.98rem; color: #444; min-height: 7.8em; max-height: 7.8em; line-height: 1.3em; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; line-clamp: 6; margin-bottom: 0;">{{ manga.description }}</p>
@@ -218,7 +222,7 @@
                           <span class="input-group-text bg-white border-start-0 px-2" id="user-info-icon" style="border-radius: 0; cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="Ingrese el nombre exacto o parcial del usuario y presione Enter o la lupa para ver su perfil.">
                             <i class='bx bx-info-circle' style="color: #457b9d; font-size: 1.2em;"></i>
                           </span>
-                          <button class="input-group-text bg-white border-start-0 px-2" id="user-search-btn" type="submit" style="border-radius: 0 8px 8px 0; cursor: pointer; border-left: none;" tabindex="-1">
+                          <button class="input-group-text bg-white border-start-0 px-2" id="user-search-btn" type="submit" style="border-radius: 0 8px 8px 0; cursor: pointer; border-left: none;" tabindex="-1" title="Buscar usuario" aria-label="Buscar usuario">
                             <i class='bx bx-search-alt-2' style="color: #e63946; font-size: 1.3rem;"></i>
                           </button>
                         </div>
@@ -360,16 +364,18 @@
             var form = document.getElementById('user-search-form');
             var input = document.getElementById('user-search-input');
             var btn = document.getElementById('user-search-btn');
-            btn.addEventListener('click', function(e) {
-              e.preventDefault();
-              form.submit();
-            });
-            input.addEventListener('keydown', function(e) {
-              if (e.key === 'Enter') {
+            if (form && input && btn) {
+              btn.addEventListener('click', function(e) {
                 e.preventDefault();
                 form.submit();
-              }
-            });
+              });
+              input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  form.submit();
+                }
+              });
+            }
           });
         </script>
         <!-- Solo Bootstrap 5 bundle y jQuery (si es necesario) -->

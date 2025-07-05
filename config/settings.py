@@ -1,7 +1,17 @@
 import os
 from pathlib import Path
 
-# ...existing code...
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-6jspc+k@yl-qj(c=8-r_j0-z%y)-4kz3p)$g7wore*q0ju2-8_'
+
+# SECURITY WARNING: don't run with debug turned on in production!
 
 # Cambia a True para desarrollo local
 DEBUG = True
@@ -57,7 +67,9 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.csp_middleware.ContentSecurityPolicyMiddleware',  # CSP header for modern frame protection
+    'core.middleware.MediaCacheControlMiddleware',  # Custom middleware for media cache headers
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -150,3 +162,6 @@ LOGIN_URL = 'Login'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# WhiteNoise: agregar charset=utf-8 a CSS y JS
+WHITENOISE_ADD_HEADERS_FUNCTION = 'config.whitenoise_headers.set_custom_headers'
